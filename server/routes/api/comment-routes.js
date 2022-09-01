@@ -5,7 +5,7 @@ const { addComment, updateComment, removeComment } = require('../../controllers/
 //   /api/comment/:bookId
 router.route('/:bookId').post(addComment)
 
-//   /api/comment/:bookId/:categoryId
+//   /api/comment/:bookId/:commentId
 router.route('/:bookId/:commentId').put(updateComment)
 router.route('/:bookId/:commentId').delete(removeComment)
 
