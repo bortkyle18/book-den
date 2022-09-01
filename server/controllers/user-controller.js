@@ -1,4 +1,4 @@
-const User = require("../models/User")
+const { User } = require("../models")
 const jwt = require("jsonwebtoken")
 const cookie = require("cookie")
 const bcrypt = require("bcrypt")
@@ -6,18 +6,36 @@ const connection = require("../config/connection")
 
 require("dotenv").config()
 
+
 const createUser = async (req, res) => {
   try {
-    const createQuery = await User.create(req.body);
-    res.status(200).json(sample);
+    const createUserQuery = await User.create(req.body);
+    res.status(200).json({ result: "success", payload: createUserQuery });
   } catch(err) {
-    res.status(400).json({ message: 'Unable to create user' });
+    res.status(400).json(err);
   }
 }
-  
+
+const updateUserById = async ({params, body}, res) => {
+  try {
+    const updateUserByIdQuery = await Category.findOneAndUpdate(
+      {_id: params.userId},
+      {...body, _id: params.userId},
+      { new: true })
+    res.status(200).json({ result: "success", payload: updateUserByIdQuery });
+  } catch(err) {
+    res.status(400).json({ message: 'Could not find specified category' });
+  }
+}
+
 const getAllUsers = async (req, res) => {
   try {
-    const getAllQuery = await User.find({});
+    const getAllQuery = await User.find({})
+      .select('-__v -password')
+      .populate('library')
+      .populate('wishlist')
+      .populate('favorites')
+      .populate('following', '-__v -password -_id -email -userPic -library -wishlist')
     res.status(200).json({ result: "success", payload: getAllQuery });
   } catch(err) {
     res.status(400).json({ message: 'No users found' });
@@ -26,7 +44,12 @@ const getAllUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
   try {
-    const getByIdQuery = await User.findById(req.params.id)
+    const getByIdQuery = await User.findById(req.params.userId)
+      .select('-__v -password')
+      .populate('library')
+      .populate('wishlist')
+      .populate('favorites')
+      .populate('following', '-__v -password -_id -email -userPic -library -wishlist')
     res.status(200).json({ result: "success", payload: getByIdQuery })
   } catch(err) {
     res.status(400).json({ result: "fail", message: 'No user found by that id' })
@@ -74,10 +97,22 @@ const lookupUserByToken = async (req, res) => {
   return res.status(200).json({ result: "success", payload: { _id: user._id, email: user.email } })
 }
 
+const deleteUser = async (req, res) => {
+  try {
+    const deleteUserQuery = await User.findOneAndDelete(req.params.userId);
+    res.status(200).json({ result: "successfully deleted user"});
+  } catch(err) {
+    res.status(400).json(err);
+  }
+}
+
+
 module.exports = { 
   createUser,
+  updateUserById,
   getAllUsers,
   getUserById,
   authenticateLogin,
-  lookupUserByToken
+  lookupUserByToken,
+  deleteUser
 }
