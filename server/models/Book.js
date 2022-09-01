@@ -1,11 +1,17 @@
 const { Schema, model } = require('mongoose');
-const commentSchema = require('./Comment');
 const dateFormat = require('../utils/dateFormat');
+
 
 const bookSchema = new Schema(
   {
     bookTitle: {
       type: String,
+      required: true
+    },
+    libraryCategory: {
+      type: String,
+      // libraryCategory is either bookshelf, favorites, or wishlist
+      enum: ['Bookshelf', 'Favorites', 'Wishlist'],
       required: true
     },
     bookCover: {
@@ -28,7 +34,12 @@ const bookSchema = new Schema(
     likes: {
       type: Number
     },
-    comments: [commentSchema]
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+      }
+    ],
   },
   {
     toJSON: {

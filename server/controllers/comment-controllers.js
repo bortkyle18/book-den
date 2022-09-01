@@ -1,5 +1,4 @@
-const Book = require('../models/Book')
-const Comment = require('../models/Comment')
+const { Book, Comment } = require("../models")
 
 
 const addComment = async (parent, { params, body }) => {
@@ -14,30 +13,30 @@ const addComment = async (parent, { params, body }) => {
       { new: true })
     res.status(200).json({ result: "success", payload: addCommentQuery });
   } catch(err) {
-    res.status(400).json({ message: 'Unable to follow user' });
+    res.status(400).json({ message: 'Unable to add comment' });
   }
 }
 
 const updateComment = async (parent, { params, body }) => {
   try {
-    // find comment and delete comment
+    // find comment and update comment
     const updateCommentQuery = await Comment.findOneAndUpdate(
       params.commentId,
       { ...body },
       { new: true })
     res.status(200).json({ result: "success", payload: updateCommentQuery });
   } catch(err) {
-    res.status(400).json({ message: 'Unable to follow user' });
+    res.status(400).json({ message: 'Unable to update comment' });
   }
 }
 
 const removeComment = async (parent, { params, body }) => {
   try {
-    // find book and update comments array to include new comment
+    // find comment and update comments array to remove comment
     const removeCommentQuery = await Comment.findOneAndDelete({ _id: params.commentId })
     res.status(200).json({ result: "success", payload: removeCommentQuery });
   } catch(err) {
-    res.status(400).json({ message: 'Unable to follow user' });
+    res.status(400).json({ message: 'Unable to remove comment' });
   }
 }
 

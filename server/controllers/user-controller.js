@@ -12,19 +12,19 @@ const createUser = async (req, res) => {
     const createUserQuery = await User.create(req.body);
     res.status(200).json({ result: "success", payload: createUserQuery });
   } catch(err) {
-    res.status(400).json(err);
+    res.status(400).json({ message: 'Unable to create user' });
   }
 }
 
 const updateUserById = async ({params, body}, res) => {
   try {
-    const updateUserByIdQuery = await Category.findOneAndUpdate(
+    const updateUserByIdQuery = await User.findOneAndUpdate(
       {_id: params.userId},
       {...body, _id: params.userId},
       { new: true })
     res.status(200).json({ result: "success", payload: updateUserByIdQuery });
   } catch(err) {
-    res.status(400).json({ message: 'Could not find specified category' });
+    res.status(400).json({ message: 'Unable to find specified user' });
   }
 }
 
@@ -38,7 +38,7 @@ const getAllUsers = async (req, res) => {
       .populate('following', '-__v -password -_id -email -userPic -library -wishlist')
     res.status(200).json({ result: "success", payload: getAllQuery });
   } catch(err) {
-    res.status(400).json({ message: 'No users found' });
+    res.status(400).json({ message: 'Unable to find users' });
   }
 }
 
@@ -52,7 +52,16 @@ const getUserById = async (req, res) => {
       .populate('following', '-__v -password -_id -email -userPic -library -wishlist')
     res.status(200).json({ result: "success", payload: getByIdQuery })
   } catch(err) {
-    res.status(400).json({ result: "fail", message: 'No user found by that id' })
+    res.status(400).json({ result: "fail", message: 'Unable to find user' })
+  }
+}
+
+const deleteUser = async (req, res) => {
+  try {
+    const deleteUserQuery = await User.findOneAndDelete(req.params.userId);
+    res.status(200).json({ result: "successfully deleted user"});
+  } catch(err) {
+    res.status(400).json({ result: "fail", message: 'Unable to delete user' })
   }
 }
 
@@ -95,15 +104,6 @@ const lookupUserByToken = async (req, res) => {
   if( !user ) return res.status(401).json({msg: "un-authorized"})
 
   return res.status(200).json({ result: "success", payload: { _id: user._id, email: user.email } })
-}
-
-const deleteUser = async (req, res) => {
-  try {
-    const deleteUserQuery = await User.findOneAndDelete(req.params.userId);
-    res.status(200).json({ result: "successfully deleted user"});
-  } catch(err) {
-    res.status(400).json(err);
-  }
 }
 
 

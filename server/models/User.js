@@ -30,18 +30,6 @@ const userSchema = new Schema(
         ref: 'Book'
       }
     ],
-    wishlist: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Book'
-      }
-    ],
-    favorites: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Book'
-      }
-    ],
     following: [
       {
         type: Schema.Types.ObjectId,
