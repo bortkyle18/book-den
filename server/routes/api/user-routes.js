@@ -12,7 +12,7 @@ router.route("/auth").post(authenticateLogin)
 //   /api/user/lookup
 router.route("/lookup").get(lookupUserByToken)
 
-//   /api/user/:id
+//   /api/user/:userId
 router.route('/:userId').get(getUserById)
 router.route('/:userId').put(updateUserById)
 router.route('/:userId').delete(deleteUser)
