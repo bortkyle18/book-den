@@ -1,0 +1,3 @@
+// Change file name to .env and add your secrete below
+
+const JWT_SECRET = "YOUR_SECRET_HERE"
