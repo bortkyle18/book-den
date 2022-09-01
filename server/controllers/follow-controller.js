@@ -10,9 +10,7 @@ const follow = async ({params}, res) => {
       { new: true })
       .select('-__v -password')
       .populate('library')
-      .populate('wishlist')
-      .populate('favorites')
-      .populate('following', '-__v -password -_id -email -userPic -library -wishlist')
+      .populate('following', '-__v -password -_id -email -userPic -library')
       .sort()
     res.status(200).json({ result: "success", payload: followQuery });
   } catch(err) {
@@ -29,9 +27,7 @@ const unFollow = async ({params}, res) => {
       { new: true })
       .select('-__v -password')
       .populate('library')
-      .populate('wishlist')
-      .populate('favorites')
-      .populate('following', '-__v -password -_id -email -userPic -library -wishlist')
+      .populate('following', '-__v -password -_id -email -userPic -library')
       .sort()
     res.status(200).json({ result: "success", payload: unFollowQuery });
   } catch(err) {

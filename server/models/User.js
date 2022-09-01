@@ -64,6 +64,10 @@ userSchema.virtual('followingCount').get(function() {
   return this.following.length;
 });
 
+userSchema.virtual('bookCount').get(function() {
+  return this.library.length;
+});
+
 
 const User = model('User', userSchema);
 

@@ -1,7 +1,7 @@
 const { Book, Comment } = require("../models")
 
 
-const addComment = async (parent, { params, body }) => {
+const addComment = async ({ params, body }, res ) => {
   try {
     // create new comment
     const newComment = await Comment.create({ ...body })
@@ -11,26 +11,29 @@ const addComment = async (parent, { params, body }) => {
       params.bookId,
       { $push: { comments: { ...newComment } } },
       { new: true })
+      .select('-__v')
+      .populate('comments')
     res.status(200).json({ result: "success", payload: addCommentQuery });
   } catch(err) {
     res.status(400).json({ message: 'Unable to add comment' });
   }
 }
 
-const updateComment = async (parent, { params, body }) => {
+const updateComment = async ({ params, body }, res ) => {
   try {
     // find comment and update comment
     const updateCommentQuery = await Comment.findOneAndUpdate(
       params.commentId,
       { ...body },
       { new: true })
+      .select('-__v')
     res.status(200).json({ result: "success", payload: updateCommentQuery });
   } catch(err) {
     res.status(400).json({ message: 'Unable to update comment' });
   }
 }
 
-const removeComment = async (parent, { params, body }) => {
+const removeComment = async ({ params, body }, res ) => {
   try {
     // find comment and update comments array to remove comment
     const removeCommentQuery = await Comment.findOneAndDelete({ _id: params.commentId })

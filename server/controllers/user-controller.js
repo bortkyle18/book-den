@@ -9,7 +9,10 @@ require("dotenv").config()
 
 const createUser = async (req, res) => {
   try {
-    const createUserQuery = await User.create(req.body);
+    const createUserQuery = await User.create(req.body)
+      .select('-__v -password')
+      .populate('library')
+      .populate('following', '-__v -password -_id -email -userPic -library')
     res.status(200).json({ result: "success", payload: createUserQuery });
   } catch(err) {
     res.status(400).json({ message: 'Unable to create user' });
@@ -22,6 +25,9 @@ const updateUserById = async ({params, body}, res) => {
       {_id: params.userId},
       {...body, _id: params.userId},
       { new: true })
+      .select('-__v -password')
+      .populate('library')
+      .populate('following', '-__v -password -_id -email -userPic -library')
     res.status(200).json({ result: "success", payload: updateUserByIdQuery });
   } catch(err) {
     res.status(400).json({ message: 'Unable to find specified user' });
@@ -33,9 +39,7 @@ const getAllUsers = async (req, res) => {
     const getAllQuery = await User.find({})
       .select('-__v -password')
       .populate('library')
-      .populate('wishlist')
-      .populate('favorites')
-      .populate('following', '-__v -password -_id -email -userPic -library -wishlist')
+      .populate('following', '-__v -password -_id -email -userPic -library')
     res.status(200).json({ result: "success", payload: getAllQuery });
   } catch(err) {
     res.status(400).json({ message: 'Unable to find users' });
@@ -47,9 +51,7 @@ const getUserById = async (req, res) => {
     const getByIdQuery = await User.findById(req.params.userId)
       .select('-__v -password')
       .populate('library')
-      .populate('wishlist')
-      .populate('favorites')
-      .populate('following', '-__v -password -_id -email -userPic -library -wishlist')
+      .populate('following', '-__v -password -_id -email -userPic -library')
     res.status(200).json({ result: "success", payload: getByIdQuery })
   } catch(err) {
     res.status(400).json({ result: "fail", message: 'Unable to find user' })
