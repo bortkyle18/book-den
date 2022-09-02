@@ -1,14 +1,23 @@
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Stack';
 
 const Home = (props) => {
   
   return (
-    <div>
-      <h1>Hello!</h1>
-
-      { props.authUser && props.authUser.email !== undefined && (
-        <p>We have a logged in user: { props.authUser.email } </p>
-      )}
-    </div>
+    <Container className='home'>
+    <Card className="text-center">
+      <Card.Header>Featured</Card.Header>
+      <Card.Body>
+        <Card.Title>Welcome to Book Den</Card.Title>
+        <Card.Text>
+          With supporting text below as a natural lead-in to additional content.
+        </Card.Text>
+        <Button variant="primary">Login</Button>
+      </Card.Body>
+      
+    </Card>
+    </Container>
   )
 }
 
