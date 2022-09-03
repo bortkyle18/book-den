@@ -1,0 +1,122 @@
+/* GLOBAL STYLES */
+
+.container {
+  margin: 0 auto;
+  max-width: 20em;
+}
+
+/* HEADER */
+header {
+  padding: 20px 0 10px 0;
+  background: #4527a0;
+  text-align: center;
+}
+
+.header__username {
+  margin: 0;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.header__title {
+  margin: 0;
+  padding-bottom: 0;
+  font-size: 3.49rem;
+  font-weight: 300;
+}
+
+/* MAIN SECTION */
+main {
+  padding-top: 30px;
+}
+
+/* Input and "add" button */
+.submission-line__input {
+  padding-left: 10px;
+  height: 44px;
+  width: 66.6666%;
+  border: none;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 1.3rem;
+}
+
+.submission-line__input::placeholder {
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.submission-line__input:focus {
+  outline: none;
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+}
+
+.submission-line__btn {
+  float: right;
+  height: 46px;
+  width: 27.33333%;
+  background: #ffc107;
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+  border: none;
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+.submission-line__input,
+.submission-line__btn {
+  margin-bottom: 16px;
+}
+
+/* List, list items, and list item buttons */
+
+.list {
+  padding: 0;
+  list-style-type: none;
+  clear: both;
+}
+
+.list__item {
+  font-size: 1.3rem;
+  width: 300px;
+  height: 30px;
+  padding: 10px;
+  text-align: center;
+}
+
+.list__item:nth-child(odd) {
+  background: #673ab7;
+}
+
+.list__item:nth-child(even) {
+  background: #4527a0;
+}
+
+.list__delete-btn {
+  cursor: pointer;
+  float: left;
+  margin: -5px;
+  padding: 5px 9px;
+}
+
+.list__check-btn {
+  cursor: pointer;
+  float: right;
+  margin: -5px;
+  padding: 4px 8px;
+}
+
+/* Checked-off item list formatting */
+
+/* (Increased specificity to override the even/odd psuedoclasses) */
+.list .list__item--checked {
+  background: #d1c4e9;
+  color: rgba(0, 0, 0, 0.38);
+  text-decoration: line-through;
+}
+
+.list__delete-btn--checked,
+.list__check-btn--checked {
+  color: rgba(0, 0, 0, 0.38);
+}
