@@ -1,6 +1,28 @@
 const { Book, User } = require("../models")
 
 
+const getAllBooks = async (req, res) => {
+  try {
+    const getAllBooksQuery = await Book.find({})
+    .select('-__v')
+    .populate('comments')
+    res.status(200).json({ result: "success", payload: getAllBooksQuery });
+  } catch(err) {
+    res.status(400).json({ message: 'Unable to find books' });
+  }
+}
+
+const getBookById = async (req, res) => {
+  try {
+    const getBookByIdQuery = await Book.findById(req.params.userId)
+      .select('-__v')
+      .populate('comments')
+    res.status(200).json({ result: "success", payload: getBookByIdQuery })
+  } catch(err) {
+    res.status(400).json({ result: "fail", message: 'Unable to find book' })
+  }
+}
+
 const addBook = async ({ params, body }, res ) => {
   try {
     // create new book
@@ -46,6 +68,8 @@ const removeBook = async ({ params, body }, res ) => {
 
 
 module.exports = { 
+  getAllBooks,
+  getBookById,
   addBook,
   updateBook,
   removeBook
