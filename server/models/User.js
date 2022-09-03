@@ -1,13 +1,41 @@
-const { Schema, model } = require("mongoose");
-const bcrypt = require("bcrypt")
+const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
-const UserSchema = new Schema({
-  // To Do
-});
 
-UserSchema.pre("save", async function(next) {
-  this.password = await bcrypt.hash(this._doc.password, 10)
+const UserSchema = new Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/.+@.+\..+/, 'Must use a valid email address'],
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+  }
+);
+
+// hash user password
+UserSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+  
   next();
+  throw new Error('Exception message');
 });
 
 const User = model("User", UserSchema);
