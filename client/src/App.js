@@ -37,10 +37,10 @@ function App() {
               element={<Home/>} 
             />
             
-            <Route 
+            {/* <Route 
               path='*' 
               element={<h1 className="display-2">Wrong page!</h1>}
-            />
+            /> */}
           </Routes>
         </Router>
       </Container>

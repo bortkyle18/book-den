@@ -6,25 +6,17 @@ const LoginPage = (props) => {
   const [ loginCreds, setLoginCreds ] = useState({ email: "", password: "" })
   const [ formMessage, setFormMessage ] = useState({ type: "", msg: "" })
 
-  /*5
-    TODO:
-    - set the form fields so that they get their value from the loginCreds in state
-    - write code so that typing into the form fields updates the correct value in state 
-    - write code so that when the submit button is clicked, the credentials are submitted 
-      to the api
-    - write code to parse the response sent back from the api, and show a message on 
-      the page that says whether the login succeeded or failed
-  */
 
   const handleLogin = async (e) => {
     e.preventDefault()
     setFormMessage({ type: "", msg: "" })
-    const authCheck = await fetch("/api/user/auth", {
+    const authCheck = await fetch("http://localhost:3001/api/user/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(loginCreds)
     })
     const authResult = await authCheck.json()
+    console.log(loginCreds)
     
     // If the login was good, save the returned token as a cookie
     if( authResult.result === "success" ){

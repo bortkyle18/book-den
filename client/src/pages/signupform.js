@@ -29,7 +29,7 @@ const SignupForm = () => {
     }
 
     try {
-      const response = await fetch('/api/user', {
+      const response = await fetch('http://localhost:3001/api/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
