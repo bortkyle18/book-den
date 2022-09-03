@@ -12,25 +12,25 @@ import "bootstrap/dist/css/bootstrap.min.css"
 // import { Navbar } from 'react-bootstrap';
 
 function App() {
-  // const [ authUser, setAuthUser ] = useState(null)
+  const [ authUser, setAuthUser ] = useState(null)
 
-  // const checkForValidUser = async() => {
-  //   const authCheck = await fetch("/api/user/lookup")
-  //   const checkResult = await authCheck.json()
-  //   if( checkResult && checkResult.result === "success" ){
-  //     setAuthUser(checkResult.payload)
-  //   }
-  // }
+  const checkForValidUser = async() => {
+    const authCheck = await fetch("/api/user/lookup")
+    const checkResult = await authCheck.json()
+    if( checkResult && checkResult.result === "success" ){
+      setAuthUser(checkResult.payload)
+    }
+  }
   
-  // useEffect(() => {
-  //   checkForValidUser()
-  // }, [])
+  useEffect(() => {
+    checkForValidUser()
+  }, [])
 
   return (
     <div className="App">
       <Container>
         <Router>
-        <Navbar />
+        <Navbar authUser={ authUser } />
         <Routes>
             <Route 
               path="/" 

@@ -37,6 +37,8 @@ const SignupForm = () => {
         body: JSON.stringify(userFormData),
       });
 
+      console.log(response)
+
       if (!response.ok) {
         throw new Error('something went wrong!');
       }
