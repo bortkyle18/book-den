@@ -16,7 +16,7 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
+      unique: true
       match: [/.+@.+\..+/, 'Must match an email address!']
     },
     password: {
@@ -51,8 +51,8 @@ userSchema.pre('save', async function(next) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
-
   next();
+  throw new Error('Exception message');
 });
 
 // compare the incoming password with the hashed password

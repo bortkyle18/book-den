@@ -6,7 +6,7 @@ const LoginPage = (props) => {
   const [ loginCreds, setLoginCreds ] = useState({ email: "", password: "" })
   const [ formMessage, setFormMessage ] = useState({ type: "", msg: "" })
 
-  /*
+  /*5
     TODO:
     - set the form fields so that they get their value from the loginCreds in state
     - write code so that typing into the form fields updates the correct value in state 
@@ -25,7 +25,7 @@ const LoginPage = (props) => {
       body: JSON.stringify(loginCreds)
     })
     const authResult = await authCheck.json()
-
+    
     // If the login was good, save the returned token as a cookie
     if( authResult.result === "success" ){
       Cookie.set("auth-token", authResult.token)

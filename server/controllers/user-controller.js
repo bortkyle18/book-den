@@ -15,7 +15,7 @@ const createUser = async (req, res) => {
       .populate('following', '-__v -password -_id -email -userPic -library')
     res.status(200).json({ result: "success", payload: createUserQuery });
   } catch(err) {
-    res.status(400).json({ message: 'Unable to create user' });
+    res.status(400).json({ message: err.message });
   }
 }
 
