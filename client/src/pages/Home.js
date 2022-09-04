@@ -4,6 +4,7 @@ import { Nav, Tab, Modal, Button, Card, Col, Row } from 'react-bootstrap';
 import Container from 'react-bootstrap/Stack';
 import SignUpForm from './signupform';
 import LoginForm from './Login';
+import Auth from '../utils/auth';
 
 const Home = (props) => {
   const [allBooks, setAllBooks] = useState([]);
@@ -39,7 +40,9 @@ const Home = (props) => {
         <Card.Text>
           With supporting text below as a natural lead-in to additional content.
         </Card.Text>
+        {!Auth.loggedIn() && (
         <Button variant="primary" onClick={() => setShowModal(true)}>Login</Button>
+        )}
       </Card.Body>
       
     </Card>
