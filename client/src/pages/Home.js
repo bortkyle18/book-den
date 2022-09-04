@@ -4,7 +4,6 @@ import { Nav, Tab, Modal, Button, Card, Col, Row } from 'react-bootstrap';
 import Container from 'react-bootstrap/Stack';
 import SignUpForm from './signupform';
 import LoginForm from './Login';
-import { allBooks } from '../utils/API';
 
 const Home = (props) => {
   const [allBooks, setAllBooks] = useState([]);
@@ -15,7 +14,6 @@ const Home = (props) => {
       const parsedResponse = await response.json()
       if( parsedResponse.result === "success" ){
         setAllBooks(parsedResponse.payload)
-        console.log(allBooks)
       }
 
       if (!response.ok) {
@@ -82,7 +80,7 @@ const Home = (props) => {
       <h2>
         {allBooks.length
           ? `Viewing ${allBooks.length} results:`
-          : 'Search for a book to begin'}
+          : 'No book poasts have been made yet'}
       </h2>
       <Row xs={1} md={2} className="g-4">
         {allBooks.map((book) => {
@@ -100,19 +98,6 @@ const Home = (props) => {
                 <Card.Title>{book.title}</Card.Title>
                 <p className="small">Authors: {book.authors}</p>
                 <Card.Text>{book.review}</Card.Text>
-                {/* {Auth.loggedIn() && (
-                  <Button
-                    disabled={savedBookIds?.some(
-                      (savedId) => savedId === book.bookId
-                    )}
-                    className="btn-block btn-info"
-                    onClick={() => handleSaveBook(book.bookId)}
-                  >
-                    {savedBookIds?.some((savedId) => savedId === book.bookId)
-                      ? 'Book Already Saved!'
-                      : 'Save This Book!'}
-                  </Button>
-                )} */}
               </Card.Body>
             </Card>
             </Col>
