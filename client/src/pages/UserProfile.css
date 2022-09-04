@@ -5,6 +5,8 @@
 
 #password {
   padding-left: 600px;
+  margin-bottom: 100px;
+  padding-bottom: 50px;
 }
 
 body {
@@ -19,8 +21,8 @@ body {
   margin-top: 50px;
   margin-left: 10px;
   margin-right: 10px;
-  width: 210px;
-  height: 210px;
+  width: 180px;
+  height: 180px;
   border: 1px solid black;
   background-position: center;
   background-size: cover;

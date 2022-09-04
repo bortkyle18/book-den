@@ -27,7 +27,10 @@ function App() {
       <Container>
         <Router>
           <Routes>
-            <Route path="/profile" element={<UserProfile />}></Route>
+            <Route
+              path="/profile"
+              element={<UserProfile authUser={authUser} />}
+            ></Route>
             <Route path="/wishlist" element={<WishList />}></Route>
           </Routes>
         </Router>
