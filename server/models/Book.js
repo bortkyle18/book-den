@@ -4,9 +4,13 @@ const dateFormat = require('../utils/dateFormat');
 
 const bookSchema = new Schema(
   {
-    bookTitle: {
-      type: String,
-      required: true
+    title: [
+      {
+        type: String,
+      },
+    ],
+    authors: {
+      type: String
     },
     libraryCategory: {
       type: String,
@@ -14,10 +18,10 @@ const bookSchema = new Schema(
       enum: ['Bookshelf', 'Favorites', 'Wishlist'],
       required: true
     },
-    bookCover: {
+    cover: {
       type: String
     },
-    bookReview: {
+    review: {
       type: String,
       minlength: 5,
       maxlength: 280

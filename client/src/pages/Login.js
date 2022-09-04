@@ -1,6 +1,8 @@
 import { useState } from "react"
+import Cookie from "js-cookie"
 import { Alert, Button, Container, Form } from 'react-bootstrap'
 import Auth from "../utils/auth"
+
 
 const LoginPage = (props) => {
   const [ loginCreds, setLoginCreds ] = useState({ email: "", password: "" })
@@ -19,7 +21,7 @@ const LoginPage = (props) => {
     // If the login was good, save the returned token as a cookie
     if( authResult.result === "success" ){
       Auth.login(authResult.token);
-      console.log(authResult.token)
+      Cookie.set("auth-token", authResult.token);
       setFormMessage({ type: "success", msg: "Your login was successful. Proceed!" })
     } else {
       setFormMessage({ type: "danger", msg: "We could not log you in with the credentials provided." })

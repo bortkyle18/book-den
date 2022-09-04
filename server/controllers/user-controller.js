@@ -1,21 +1,17 @@
-const { User } = require("../models")
-const jwt = require("jsonwebtoken")
-const cookie = require("cookie")
-const bcrypt = require("bcrypt")
-const connection = require("../config/connection")
+const { User } = require("../models");
+const jwt = require("jsonwebtoken");
+const cookie = require("cookie");
+const bcrypt = require("bcrypt");
+const connection = require("../config/connection");
 
-require("dotenv").config()
+require("dotenv").config();
 
 
 const createUser = async (req, res) => {
   try {
     const createUserQuery = await User.create(req.body)
-      .select('-__v -password')
-      .populate('library')
-      .populate('following', '-__v -password -_id -email -userPic -library')
     res.status(200).json({ result: "success", payload: createUserQuery });
-  } catch(err) {
-    res.status(400).json({ message: err.message });
+  } catch(err) {    res.status(400).json({ message: err.message });
   }
 }
 

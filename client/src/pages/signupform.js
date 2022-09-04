@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
+import Cookie from "js-cookie"
+import Auth from "../utils/auth"
 
-import Auth from '../utils/auth';
 
 const SignupForm = () => {
- 
+
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   
   const [validated] = useState(false);
- 
+
   const [showAlert, setShowAlert] = useState(false);
 
   
@@ -37,14 +38,24 @@ const SignupForm = () => {
         body: JSON.stringify(userFormData),
       });
 
-      console.log(response)
-
       if (!response.ok) {
         throw new Error('something went wrong!');
       }
 
-      const { token, user } = await response.json();
-      Auth.login(token);
+      const authCheck = await fetch("/api/user/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userFormData)
+      })
+      const authResult = await authCheck.json()
+  
+      // If the login was good, save the returned token as a cookie
+      if( authResult.result === "success" ){
+        Auth.login(authResult.token);
+        Cookie.set("auth-token", authResult.token)
+      } else {
+        setShowAlert(true);
+      }
     } catch (err) {
       console.error(err);
       setShowAlert(true);

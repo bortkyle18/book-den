@@ -1,13 +1,36 @@
-import React, { useState } from 'react';
-import { Nav, Tab, Modal, Button } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
+import React, { useState, useEffect } from 'react';
+import { Nav, Tab, Modal, Button, Card, Col, Row } from 'react-bootstrap';
+// import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Stack';
 import SignUpForm from './signupform';
 import LoginForm from './Login';
 
 const Home = (props) => {
+  const [allBooks, setAllBooks] = useState([]);
+
+  const displayBooks = async () => {
+    try {
+      const response =  await fetch('api/book')
+      const parsedResponse = await response.json()
+      if( parsedResponse.result === "success" ){
+        setAllBooks(parsedResponse.payload)
+      }
+
+      if (!response.ok) {
+        throw new Error('something went wrong!');
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  useEffect( () => {
+    displayBooks();
+  }, [])
+
   const [showModal, setShowModal] = useState(false);
   return (
+    <>
     <Container className='home'>
     <Card className="text-center">
       <Card.Header>Featured</Card.Header>
@@ -52,6 +75,37 @@ const Home = (props) => {
         </Tab.Container>
       </Modal>
     </Container>
+
+      <Container>
+      <h2>
+        {allBooks.length
+          ? `Viewing ${allBooks.length} results:`
+          : 'No book poasts have been made yet'}
+      </h2>
+      <Row xs={1} md={2} className="g-4">
+        {allBooks.map((book) => {
+          return (
+            <Col>
+            <Card key={book._id} border="dark">
+              {book.bookCover ? (
+                <Card.Img
+                  src={book.cover}
+                  alt={`The cover for ${book.title}`}
+                  variant="top"
+                />
+              ) : null}
+              <Card.Body>
+                <Card.Title>{book.title}</Card.Title>
+                <p className="small">Authors: {book.authors}</p>
+                <Card.Text>{book.review}</Card.Text>
+              </Card.Body>
+            </Card>
+            </Col>
+          );
+        })}
+      </Row>
+      </Container>
+    </>
   )
 }
 
