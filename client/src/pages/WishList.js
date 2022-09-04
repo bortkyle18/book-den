@@ -1,53 +1,79 @@
 import "./WishList.css";
 import { useEffect, useState } from "react";
-import { response } from "express";
 
 const UserProfile = (props) => {
   const [wishlist, setWishList] = useState([]);
   useEffect(() => {
-    fetch("http://127.0.0.1:3001/getwishlist")
-.then(response => {
-  setWishList(response.json())
-})
-.catch(err => {
-  console.log(err)
-})
-
-  })
+    fetch("http://127.0.0.1:3001/api/book")
+      .then((response) => {
+        response
+          .json()
+          .then((result) => {
+            setWishList(result.payload);
+          })
+          .catch((err) => {
+            throw err;
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <>
       <header>
-        <div class="container">
-          <h3 class="header__username">Book Den </h3>
-          <h1 class="header__title">Wish List</h1>
+        <div className="container">
+          <h3 className="header__username">Book Den </h3>
+          <h1 className="header__title">Wish List</h1>
         </div>
       </header>
 
       <main>
-        <div class="container">
+        <div className="container">
           <input
-            class="submission-line__input"
+            className="submission-line__input"
             type="text"
-            maxlength="20"
+            maxLength="20"
             placeholder="Enter new book here..."
           />
-          <button class="submission-line__btn">Add</button>
+          <button className="submission-line__btn">Add</button>
 
-          <ul class="list">
-            {wishlist.map((wishlistItem) => {
-            <li class="list__item">
-          <a href="javascript:void(0)" class="list__delete-btn">
-            X
-          </a>
-          {wishlistItem.title}
-          <a href="javascript:void(0)" class="list__check-btn">
-            ✔
-          </a>
-        </li>
- 
-            })
-         
-                </ul> 
+          <ul className="list">
+            {wishlist.map((wishlistItem) => (
+              <li className="list__item">
+                <a href="javascript:void(0)" className="list__delete-btn">
+                  X
+                </a>
+                {wishlistItem.bookTitle}
+                <a href="javascript:void(0)" className="list__check-btn">
+                  ✔
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div>
+            <footer className="footer">
+              <div className="row">
+                <ul>
+                  <li>
+                    <a href="#">Home</a>
+                  </li>
+                  <li>
+                    <a href="#">Our Services</a>
+                  </li>
+                  <li>
+                    <a href="#">Privacy Policy</a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      {" "}
+                      <a href="#">Contact us</a>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </footer>
+          </div>
         </div>
       </main>
     </>

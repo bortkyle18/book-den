@@ -8,21 +8,24 @@
 /* HEADER */
 header {
   padding: 20px 0 10px 0;
-  background: #4527a0;
+  background: burlywood;
   text-align: center;
 }
 
 .header__username {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
+  font-style: bold;
   letter-spacing: 1px;
 }
 
 .header__title {
   margin: 0;
   padding-bottom: 0;
-  font-size: 3.49rem;
-  font-weight: 300;
+  font-size: 55px;
+  font-weight: 350;
+  font-style: bold;
+  color: black;
 }
 
 /* MAIN SECTION */
@@ -55,7 +58,7 @@ main {
   float: right;
   height: 46px;
   width: 27.33333%;
-  background: #ffc107;
+  background: sienna;
   -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
@@ -80,17 +83,17 @@ main {
 .list__item {
   font-size: 1.3rem;
   width: 300px;
-  height: 30px;
+  height: 40px;
   padding: 10px;
   text-align: center;
 }
 
 .list__item:nth-child(odd) {
-  background: #673ab7;
+  background: burlywood;
 }
 
 .list__item:nth-child(even) {
-  background: #4527a0;
+  background: sienna;
 }
 
 .list__delete-btn {
@@ -112,11 +115,60 @@ main {
 /* (Increased specificity to override the even/odd psuedoclasses) */
 .list .list__item--checked {
   background: #d1c4e9;
-  color: rgba(0, 0, 0, 0.38);
+  color: black;
   text-decoration: line-through;
 }
 
 .list__delete-btn--checked,
 .list__check-btn--checked {
-  color: rgba(0, 0, 0, 0.38);
+  color: black;
+}
+
+footer {
+  height: 120px;
+  background: burlywood;
+  text-align: center;
+  font-family: "Play", sans-serif;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+footer .row {
+  width: 100%;
+  margin: 1% 0%;
+  padding: 0.6% 0%;
+  color: gray;
+  font-size: 0.8em;
+}
+
+footer .row a {
+  font-size: 18px;
+  padding: 20px;
+  text-decoration: none;
+  color: black;
+  transition: 0.5s;
+  font-style: bold;
+  padding-top: 50px;
+}
+
+footer .row a:hover {
+  color: #fff;
+}
+
+footer .row ul {
+  width: 100%;
+  padding-top: 50px;
+}
+
+footer .row ul li {
+  display: inline-block;
+  margin: 0px 30px;
+}
+
+footer .row a i {
+  font-size: 2em;
+  margin: 0% 1%;
 }

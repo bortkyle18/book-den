@@ -1,0 +1,28 @@
+/* img {
+  max-width: 200px;
+  max-height: 200px;
+} */
+
+#password {
+  padding-left: 600px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#display_image {
+  margin-top: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 210px;
+  height: 210px;
+  border: 1px solid black;
+  background-position: center;
+  background-size: cover;
+  border-radius: 150px;
+}
