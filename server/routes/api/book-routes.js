@@ -6,7 +6,7 @@ const { getAllBooks, getBookById, addBook, updateBook, removeBook } = require('.
 router.route('/:userId').post(addBook)
 
 //   /api/book/:bookId
-router.route('/:bookId').get(getAllBooks)
+router.route('/').get(getAllBooks)
 router.route('/:bookId').get(getBookById)
 
 //   /api/book/:userId/:bookId

@@ -1,13 +1,35 @@
 import React, { useState } from 'react';
-import { Nav, Tab, Modal, Button } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
+import { Nav, Tab, Modal, Button, Card, Col, Row } from 'react-bootstrap';
+// import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Stack';
 import SignUpForm from './signupform';
 import LoginForm from './Login';
+import { allBooks } from '../utils/API';
 
 const Home = (props) => {
+  const [searchedBooks, setSearchedBooks] = useState([]);
+
+  const response =  allBooks;
+
+      if (!response.ok) {
+        throw new Error('something went wrong!');
+      }
+
+      const { items } =  response.json();
+
+      const bookData = items.map((book) => ({
+        bookId: book.id,
+        authors: book.volumeInfo.authors || ['No author to display'],
+        title: book.volumeInfo.title,
+        description: book.volumeInfo.description,
+        image: book.volumeInfo.imageLinks?.thumbnail || '',
+      }));
+
+      setSearchedBooks(bookData);
+
   const [showModal, setShowModal] = useState(false);
   return (
+    <>
     <Container className='home'>
     <Card className="text-center">
       <Card.Header>Featured</Card.Header>
@@ -52,6 +74,50 @@ const Home = (props) => {
         </Tab.Container>
       </Modal>
     </Container>
+
+      <Container>
+      {/* <h2>
+        {searchedBooks.length
+          ? `Viewing ${searchedBooks.length} results:`
+          : 'Search for a book to begin'}
+      </h2> */}
+      <Row xs={1} md={2} className="g-4">
+        {searchedBooks.map((book) => {
+          return (
+            <Col>
+            <Card key={book.bookId} border="dark">
+              {book.image ? (
+                <Card.Img
+                  src={book.image}
+                  alt={`The cover for ${book.title}`}
+                  variant="top"
+                />
+              ) : null}
+              <Card.Body>
+                <Card.Title>{book.title}</Card.Title>
+                <p className="small">Authors: {book.authors}</p>
+                <Card.Text>{book.description}</Card.Text>
+                {/* {Auth.loggedIn() && (
+                  <Button
+                    disabled={savedBookIds?.some(
+                      (savedId) => savedId === book.bookId
+                    )}
+                    className="btn-block btn-info"
+                    onClick={() => handleSaveBook(book.bookId)}
+                  >
+                    {savedBookIds?.some((savedId) => savedId === book.bookId)
+                      ? 'Book Already Saved!'
+                      : 'Save This Book!'}
+                  </Button>
+                )} */}
+              </Card.Body>
+            </Card>
+            </Col>
+          );
+        })}
+      </Row>
+      </Container>
+    </>
   )
 }
 
