@@ -80,7 +80,7 @@ const Home = (props) => {
       <h2>
         {allBooks.length
           ? `Viewing ${allBooks.length} results:`
-          : 'No book poasts have been made yet'}
+          : 'No book posts have been made yet'}
       </h2>
       <Row xs={1} md={2} className="g-4">
         {allBooks.map((book) => {
