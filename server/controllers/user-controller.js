@@ -71,16 +71,19 @@ const authenticateLogin = async (req, res) => {
   // First see if we have a user with the supplied email address 
   const foundUser = await User.findOne({ email: req.body.email })
   if( !foundUser ) return res.status(401).json({ message: "Login failed." })
+  console.log(foundUser)
 
   // Now compare the supplied password w/ the hashed password
   const isValid = await bcrypt.compare(req.body.password, foundUser.password)
   if( !isValid ) return res.status(401).json({ message: "Login failed." })
+  console.log(isValid)
 
   // If we have a match, we will send back a token (line 43 extracts the password key from the foundUser object)
   const { password, ...modifiedUser } = foundUser
 
   // Create a token to represent the authenticated user
   const token = jwt.sign({ _id: foundUser._id, email: foundUser.email}, process.env.JWT_SECRET)
+  console.log(token)
 
   res
     .status(200)

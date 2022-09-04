@@ -56,11 +56,36 @@ const updateBook = async ({ params, body }, res ) => {
   }
 }
 
+const updateBookById = async ({ params, body }, res ) => {
+  try {
+    // find book and update book
+    const updateBookQuery = await Book.findOneAndUpdate(
+      params.bookId,
+      { ...body },
+      { new: true })
+      .select('-__v')
+      .populate('comments')
+    res.status(200).json({ result: "success", payload: updateBookQuery });
+  } catch(err) {
+    res.status(400).json({ message: 'Unable to update book' });
+  }
+}
+
 const removeBook = async ({ params, body }, res ) => {
   try {
     // find  book and remove  book
     const removeBookQuery = await Book.findOneAndDelete({ _id: params.bookId })
     res.status(200).json({ result: "success", payload: removeBookQuery });
+  } catch(err) {
+    res.status(400).json({ message: 'Unable to delete book' });
+  }
+}
+
+const removeBookById = async ({ params, body }, res ) => {
+  try {
+    // find  book and remove  book
+    const removeBookByIdQuery = await Book.findOneAndDelete({ _id: params.bookId })
+    res.status(200).json({ result: "success", payload: removeBookByIdQuery });
   } catch(err) {
     res.status(400).json({ message: 'Unable to delete book' });
   }
@@ -72,5 +97,7 @@ module.exports = {
   getBookById,
   addBook,
   updateBook,
-  removeBook
+  updateBookById,
+  removeBook,
+  removeBookById
 }
