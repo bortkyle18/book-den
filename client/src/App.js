@@ -5,7 +5,6 @@ import Navigation from "./components/Navigation";
 import UserProfile from "./pages/UserProfile";
 import WishList from "./pages/WishList";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 function App() {
   const [authUser, setAuthUser] = useState(null);
 

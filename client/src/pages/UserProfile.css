@@ -3,18 +3,11 @@
   max-height: 200px;
 } */
 
-#password {
-  padding-left: 600px;
-  margin-bottom: 100px;
-  padding-bottom: 50px;
-}
-
 body {
   display: flex;
   justify-content: center;
-  align-items: center;
+
   flex-direction: column;
-  gap: 10px;
 }
 
 #display_image {
@@ -27,4 +20,12 @@ body {
   background-position: center;
   background-size: cover;
   border-radius: 150px;
+}
+
+content {
+  padding-left: 200px;
+}
+
+#logoutBtn {
+  padding-left: 600px;
 }

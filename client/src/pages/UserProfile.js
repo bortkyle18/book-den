@@ -182,7 +182,7 @@ const UserProfile = (props) => {
     <body>
       <div className="userNav">
         <a className="button" href="">
-          <div className="logout">
+          <div className="logout" id="logoutBtn">
             LOGOUT{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -197,7 +197,7 @@ const UserProfile = (props) => {
           </div>
         </a>
       </div>
-      <div>
+      <div className="content">
         <input
           type="file"
           id="image_input"
@@ -213,8 +213,20 @@ const UserProfile = (props) => {
           <span style={{ fontWeight: "bold" }}>User email:</span>
           Tomhoffmanco@gmail.com
         </p>
-        <br />
 
+        <div id="password">
+          <p>
+            <span style={{ fontWeight: "bold" }}>Edit Password:</span>
+          </p>
+          <input
+            onChange={() => handlePasswordInputChange}
+            id="passwordInput"
+            type="text"
+          ></input>
+          <button onClick={() => handleChangePassword()}>
+            Change password
+          </button>
+        </div>
         <div class="container mt-4">
           <h1 class="display-4 text-center">
             <i class="fas fa-book-open text-primary">
@@ -267,16 +279,6 @@ const UserProfile = (props) => {
         <br />
         <br />
         <br />
-        <div id="password">
-          <input
-            onChange={() => handlePasswordInputChange}
-            id="passwordInput"
-            type="text"
-          ></input>
-          <button onClick={() => handleChangePassword()}>
-            Change password
-          </button>
-        </div>
       </div>
     </body>
   );
