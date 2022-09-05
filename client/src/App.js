@@ -3,8 +3,11 @@ import { useEffect, useState } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Container from "react-bootstrap/Container"
 import Navbar from "./components/Navbar";
-import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
+import UserProfile from './pages/UserProfile';
+import Bookshelf from "./pages/Bookshelf";
+import Favorites from "./pages/Favorites";
+import Wishlist from "./pages/Wishlist";
 import PageNotFound from "./pages/404";
 import './App.css'
 
@@ -32,15 +35,12 @@ function App() {
         <Router>
         <Navbar authUser={ authUser } />
         <Routes>
-            <Route 
-              path="/" 
-              element={<Home/>} 
-            />
-            
-            <Route 
-              path='*' 
-              element={<h1 className="display-2">Wrong page!</h1>}
-            />
+            <Route path="/" element={<Home/>} />
+            <Route path="/profile" element={<UserProfile authUser={authUser} />}></Route>
+            <Route path="/Bookshelf" element={<Bookshelf authUser={authUser} />}></Route>
+            <Route path="/Favorites" element={<Favorites authUser={authUser} />}></Route>
+            <Route path="/Wishlist" element={<Wishlist authUser={authUser} />}></Route>
+            <Route path='*' element={<PageNotFound />}/>
           </Routes>
         </Router>
       </Container>

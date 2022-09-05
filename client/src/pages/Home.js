@@ -90,7 +90,7 @@ const Home = (props) => {
           return (
             <Col>
             <Card key={book._id} border="dark">
-              {book.bookCover ? (
+              {book.cover ? (
                 <Card.Img
                   src={book.cover}
                   alt={`The cover for ${book.title}`}
