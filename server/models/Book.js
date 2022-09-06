@@ -23,8 +23,7 @@ const bookSchema = new Schema(
     },
     review: {
       type: String,
-      minlength: 5,
-      maxlength: 280
+      minlength: 5
     },
     createdAt: {
       type: Date,
