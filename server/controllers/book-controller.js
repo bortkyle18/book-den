@@ -29,12 +29,12 @@ const addBook = async ({ params, body }, res ) => {
     const newBook = await Book.create({ ...body })
 
     // find user and update library array to include new book
-    const addBookQuery = await User.findOneAndUpdate(
+    const addBookQuery = await User.findByIdAndUpdate(
       params.userId,
       { $push: { library: { ...newBook } } },
       { new: true })
       .select('-__v')
-      .populate('comments')
+      .populate('library')
     res.status(200).json({ result: "success", payload: addBookQuery });
   } catch(err) {
     res.status(400).json({ message: 'Unable to add book' });
@@ -44,7 +44,7 @@ const addBook = async ({ params, body }, res ) => {
 const updateBook = async ({ params, body }, res ) => {
   try {
     // find book and update book
-    const updateBookQuery = await Book.findOneAndUpdate(
+    const updateBookQuery = await Book.findByIdAndUpdate(
       params.bookId,
       { ...body },
       { new: true })
@@ -59,7 +59,7 @@ const updateBook = async ({ params, body }, res ) => {
 const updateBookById = async ({ params, body }, res ) => {
   try {
     // find book and update book
-    const updateBookQuery = await Book.findOneAndUpdate(
+    const updateBookQuery = await Book.findByIdAndUpdate(
       params.bookId,
       { ...body },
       { new: true })
