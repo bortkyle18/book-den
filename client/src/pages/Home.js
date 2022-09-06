@@ -13,7 +13,7 @@ const Home = (props) => {
     try {
       const response =  await fetch('api/book')
       const parsedResponse = await response.json()
-      if( parsedResponse.result === "success" ){
+      if( parsedResponse.result === "success"){
         setAllBooks(parsedResponse.payload)
       }
 
@@ -86,26 +86,30 @@ const Home = (props) => {
           : 'No book posts have been made yet'}
       </h2>
       <Row xs={1} md={2} className="g-4">
-        {allBooks.map((book) => {
-          return (
-            <Col>
-            <Card key={book._id} border="dark">
-              {book.cover ? (
-                <Card.Img
-                  src={book.cover}
-                  alt={`The cover for ${book.title}`}
-                  variant="top"
-                />
-              ) : null}
-              <Card.Body>
-                <Card.Title>{book.title}</Card.Title>
-                <p className="small">Authors: {book.authors}</p>
-                <Card.Text>{book.review}</Card.Text>
-              </Card.Body>
-            </Card>
-            </Col>
-          );
-        })}
+        {// eslint-disable-next-line
+        allBooks.map((book) => {
+          if (book.review) {
+            return (
+              <Col key={book._id}>
+              <Card border="dark">
+                {book.cover ? (
+                  <Card.Img
+                    src={book.cover}
+                    alt={`The cover for ${book.title}`}
+                    variant="top"
+                  />
+                ) : null}
+                <Card.Body>
+                  <Card.Title>{book.title}</Card.Title>
+                  <p className="small">Authors: {book.authors}</p>
+                  <p className="small">Posted By: {book.username} on {book.createdAt}</p>
+                  <Card.Text>{book.review}</Card.Text>
+                </Card.Body>
+              </Card>
+              </Col>
+            );
+          }
+        }).concat().reverse()}
       </Row>
       </Container>
     </>

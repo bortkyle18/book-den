@@ -27,6 +27,7 @@ const AppNavbar = (props) => {
                   <Nav.Link as={Link} to='/Bookshelf'>Bookshelf</Nav.Link>
                   <Nav.Link as={Link} to='/Favorites'>Favorites</Nav.Link>
                   <Nav.Link as={Link} to='/Wishlist'>Wishlist</Nav.Link>
+                  <Nav.Link as={Link} to='/AddBook'>Add Book to Library</Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
