@@ -40,7 +40,7 @@ Run the following commands:
 
 ![Preview]()
 
-Check out the deployed application [here]().
+Check out the deployed application [here](https://glacial-ridge-11514.herokuapp.com/).
 
 ## Contributing
 

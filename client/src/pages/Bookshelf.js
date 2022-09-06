@@ -102,22 +102,16 @@ const Bookshelf = (props) => {
   }
 
   //Remove books
-  
   const [ deleteMessage, setDeleteMessage ] = useState({ type: "", msg: "" })
   const handleDeleteBook = async (book
   ) => {
-    const bookToDelete = {
-      title: book.title,
-      cover: book.cover,
-      authors: book.authors,
-      libraryCategory: "Bookshelf",
-      username: authUser.username
-    }
+    console.log(book)
+    const bookId = book._id
     setDeleteMessage({ type: "", msg: "" })
-    const deleteBook = await fetch("/api/book/"+userId, {
+    const deleteBook = await fetch("/api/book/"+bookId, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(bookToDelete)
+      
     })
     const deleteBookResult = await deleteBook.json()
     console.log(deleteBookResult)
@@ -234,6 +228,17 @@ const Bookshelf = (props) => {
                       <p className="small">Authors: {book.authors}</p>
                       <p className="small">Posted By: {book.username} on {book.createdAt}</p>
                       <Card.Text>{book.review}</Card.Text>
+                      <Button
+                        className="btn-block btn-danger"
+                        onClick={() => handleDeleteBook(book)}
+                      >
+                        Delete this Book!
+                      </Button>
+                      { deleteMessage.msg.length > 0 && (
+                            <Alert variant={deleteMessage.type} style={{ marginTop: "2em" }}>
+                              { deleteMessage.msg }
+                              </Alert>
+                          )}
                     </Card.Body>
                   </Card>
                   </Col>
@@ -262,16 +267,16 @@ const Bookshelf = (props) => {
                       <p className="small">Posted By: {book.username} on {book.createdAt}</p>
                       <Card.Text>{book.review}</Card.Text>
                       <Button
-                    className="btn-block btn-danger"
-                    onClick={() => handleDeleteBook(book.bookId)}
-                  >
-                    Delete this Book!
-                  </Button>
-                  { deleteMessage.msg.length > 0 && (
-                        <Alert variant={deleteMessage.type} style={{ marginTop: "2em" }}>
-                          { deleteMessage.msg }
-                          </Alert>
-                      )}
+                        className="btn-block btn-danger"
+                        onClick={() => handleDeleteBook(book)}
+                      >
+                        Delete this Book!
+                      </Button>
+                      { deleteMessage.msg.length > 0 && (
+                            <Alert variant={deleteMessage.type} style={{ marginTop: "2em" }}>
+                              { deleteMessage.msg }
+                              </Alert>
+                          )}
                     </Card.Body>
                   </Card>
                   </Col>
