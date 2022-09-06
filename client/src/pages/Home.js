@@ -39,7 +39,7 @@ const Home = (props) => {
       <Card.Body>
         <Card.Title>Welcome to Book Den</Card.Title>
         <Card.Text>
-          With supporting text below as a natural lead-in to additional content.
+          Where you can find your favorite books, add to a wishlist, and interact with other users' book choices!
         </Card.Text>
         {!Auth.loggedIn() && (
         <Button variant="primary" onClick={() => setShowModal(true)}>Login</Button>
@@ -81,11 +81,11 @@ const Home = (props) => {
     </Container>
 
       <Container>
-      <h2>
+      {/* <h2>
         {allBooks.length
           ? `Viewing ${allBooks.length} results:`
           : 'No book posts have been made yet'}
-      </h2>
+      </h2> */}
       <Row xs={1} md={2} className="g-4">
         {// eslint-disable-next-line
         allBooks.map((book) => {
