@@ -1,8 +1,11 @@
 import "./WishList.css";
 import { useEffect, useState } from "react";
+import { getBooks } from "../actions/books.actions";
+import { BookCard } from "../components/BookCard";
 
 const UserProfile = (props) => {
   const [wishlist, setWishList] = useState([]);
+  const [searchText, setSearchText] = useState("");
   useEffect(() => {
     fetch("http://127.0.0.1:3001/api/book")
       .then((response) => {
@@ -19,6 +22,13 @@ const UserProfile = (props) => {
         console.log(err);
       });
   }, []);
+
+  const getBookData = () => {
+    getBooks(searchText).then((res) => {
+      setWishList(res.data.items);
+      console.log(wishlist);
+    });
+  };
   return (
     <>
       <header>
@@ -35,20 +45,15 @@ const UserProfile = (props) => {
             type="text"
             maxLength="20"
             placeholder="Enter new book here..."
+            onChange={(e) => setSearchText(e.target.value)}
           />
-          <button className="submission-line__btn">Add</button>
+          <button onClick={getBookData} className="submission-line__btn">
+            Add
+          </button>
 
           <ul className="list">
-            {wishlist.map((wishlistItem) => (
-              <li className="list__item">
-                <a href="javascript:void(0)" className="list__delete-btn">
-                  X
-                </a>
-                {wishlistItem.bookTitle}
-                <a href="javascript:void(0)" className="list__check-btn">
-                  ✔
-                </a>
-              </li>
+            {wishlist.map((book) => (
+              <BookCard book={book} />
             ))}
           </ul>
           <div>

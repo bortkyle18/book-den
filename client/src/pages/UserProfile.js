@@ -17,6 +17,15 @@ import { useState } from "react";
 //   reader.readAsDataURL(this.files[0]);
 // });
 
+var bgColors = {
+  Default: "#81b71a",
+  Blue: "#282D3C",
+  Cyan: "#37BC9B",
+  Green: "#8CC152",
+  Grey: "#696969",
+  Brown: "#615550",
+};
+
 const UserProfile = (props) => {
   const [newPassword, setNewPassword] = useState("");
   let user = props.user;
@@ -179,7 +188,7 @@ const UserProfile = (props) => {
     });
   };
   return (
-    <body>
+    <body style={{ backgroundColor: bgColors.Brown }}>
       <div className="userNav">
         <a className="button" href="">
           <div className="logout" id="logoutBtn">
@@ -213,6 +222,13 @@ const UserProfile = (props) => {
           <span style={{ fontWeight: "bold" }}>User email:</span>
           Tomhoffmanco@gmail.com
         </p>
+
+        {/* <div>
+             <div>Name: {user.displayName}</div>
+             <div>Username: {user.username}</div>
+             <div>Email: {user.email}</div>
+             <div>Edit Password: {user.password</div>
+         </div> */}
 
         <div id="password">
           <p>
