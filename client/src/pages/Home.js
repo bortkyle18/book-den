@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Nav, Tab, Modal, Button, Card, Col, Row } from 'react-bootstrap';
 // import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Stack';
@@ -102,7 +103,13 @@ const Home = (props) => {
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
                   <p className="small">Authors: {book.authors}</p>
-                  <p className="small">Posted By: {book.username} on {book.createdAt}</p>
+                  <p>
+                    <Link
+                      to={`/profile/${book.username}`}
+                    >
+                    {book.username}
+                  </Link>{' '}
+                  Posted By: {book.username} on {book.createdAt}</p>
                   <Card.Text>{book.review}</Card.Text>
                 </Card.Body>
               </Card>

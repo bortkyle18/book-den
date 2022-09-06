@@ -8,6 +8,7 @@ import UserProfile from './pages/UserProfile';
 import Bookshelf from "./pages/Bookshelf";
 import Favorites from "./pages/Favorites";
 import Wishlist from "./pages/Wishlist";
+import VisitProfile from "./pages/VisitProfile";
 import AddToLibrary from './pages/AddToLibrary';
 import PageNotFound from "./pages/404";
 import './App.css'
@@ -41,7 +42,10 @@ function App() {
         <Navbar authUser={ authUser } />
         <Routes>
             <Route path="/" element={<Home/>} />
-            <Route path="/profile" element={<UserProfile authUser={authUser} />}></Route>
+            <Route path="/profile">
+              <Route path=":username" element={<VisitProfile />} />
+              <Route path="" element={<UserProfile authUser={authUser}/>} />
+            </Route>
             <Route path="/Bookshelf" element={<Bookshelf authUser={authUser} />}></Route>
             <Route path="/Favorites" element={<Favorites authUser={authUser} />}></Route>
             <Route path="/Wishlist" element={<Wishlist authUser={authUser} />}></Route>

@@ -13,7 +13,7 @@ import {
 
 const UserProfile = (props) => {
   const { authUser } = props
-
+  
   // Search to add books
   const [searchedBooks, setSearchedBooks] = useState([]);
 
@@ -196,8 +196,8 @@ const UserProfile = (props) => {
               userBooks.map((book) => {
                 if (book.libraryCategory === "Wishlist") {
                   return (
-                    <Col>
-                    <Card key={book._id} border="dark">
+                    <Col key={book._id}>
+                    <Card border="dark">
                       {book.cover ? (
                         <Card.Img
                           src={book.cover}
@@ -223,8 +223,8 @@ const UserProfile = (props) => {
               userBooks.map((book) => {
                 if (book.libraryCategory === "Favorites") {
                   return (
-                    <Col>
-                    <Card key={book._id} border="dark">
+                    <Col key={book._id}>
+                    <Card border="dark">
                       {book.cover ? (
                         <Card.Img
                           src={book.cover}
@@ -250,8 +250,8 @@ const UserProfile = (props) => {
               userBooks.map((book) => {
                 if (book.libraryCategory === "Bookshelf") {
                   return (
-                    <Col>
-                    <Card key={book._id} border="dark">
+                    <Col key={book._id} >
+                    <Card border="dark">
                       {book.cover ? (
                         <Card.Img
                           src={book.cover}

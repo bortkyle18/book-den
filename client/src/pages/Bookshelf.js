@@ -190,8 +190,8 @@ const Bookshelf = (props) => {
             userBooks.map((book) => {
               if (book.libraryCategory === "Favorites") {
                 return (
-                  <Col>
-                  <Card key={book._id} border="dark">
+                  <Col key={book._id}>
+                  <Card border="dark">
                     {book.cover ? (
                       <Card.Img
                         src={book.cover}
@@ -217,8 +217,8 @@ const Bookshelf = (props) => {
             userBooks.map((book) => {
               if (book.libraryCategory === "Bookshelf") {
                 return (
-                  <Col>
-                  <Card key={book._id} border="dark">
+                  <Col key={book._id} >
+                  <Card border="dark">
                     {book.cover ? (
                       <Card.Img
                         src={book.cover}

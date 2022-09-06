@@ -1,0 +1,19 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#display_image {
+  margin-top: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 180px;
+  height: 180px;
+  border: 1px solid black;
+  background-position: center;
+  background-size: cover;
+  border-radius: 150px;
+}
