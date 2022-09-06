@@ -101,10 +101,40 @@ const Bookshelf = (props) => {
     }
   }
 
+  //Remove books
+  
+  const [ deleteMessage, setDeleteMessage ] = useState({ type: "", msg: "" })
+  const handleDeleteBook = async (book
+  ) => {
+    const bookToDelete = {
+      title: book.title,
+      cover: book.cover,
+      authors: book.authors,
+      libraryCategory: "Bookshelf",
+      username: authUser.username
+    }
+    setDeleteMessage({ type: "", msg: "" })
+    const deleteBook = await fetch("/api/book/"+userId, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(bookToDelete)
+    })
+    const deleteBookResult = await deleteBook.json()
+    console.log(deleteBookResult)
+    
+    if( deleteBookResult.result === "success" ){
+      setDeleteMessage({ type: "success", msg: "This book was deleted from your Bookshelf!" })
+    } else {
+      setDeleteMessage({ type: "danger", msg: "We were unable to deletethis book to your Bookshelf" })
+    }
+  };
+
   useEffect( () => {
     handleDisplayBooks(userId);
   }, [userId])
   // End of get my books
+
+  
 
 
   return (
@@ -231,6 +261,17 @@ const Bookshelf = (props) => {
                       <p className="small">Authors: {book.authors}</p>
                       <p className="small">Posted By: {book.username} on {book.createdAt}</p>
                       <Card.Text>{book.review}</Card.Text>
+                      <Button
+                    className="btn-block btn-danger"
+                    onClick={() => handleDeleteBook(book.bookId)}
+                  >
+                    Delete this Book!
+                  </Button>
+                  { deleteMessage.msg.length > 0 && (
+                        <Alert variant={deleteMessage.type} style={{ marginTop: "2em" }}>
+                          { deleteMessage.msg }
+                          </Alert>
+                      )}
                     </Card.Body>
                   </Card>
                   </Col>
