@@ -88,7 +88,7 @@ const AddToLibrary = (props) => {
     const saveBookResult = await saveBook.json()
     
     if( saveBookResult.result === "success" ){
-      window.location.reload()
+      setSaveMessage({ type: "success", msg: "This book was saved to your Bookshelf!" })
     } else {
       setSaveMessage({ type: "danger", msg: "We were unable to save this book to your Bookshelf" })
     }
@@ -112,9 +112,9 @@ const AddToLibrary = (props) => {
     const saveBookResult = await saveBook.json()
     
     if( saveBookResult.result === "success" ){
-      window.location.reload()
+      setSaveMessage({ type: "success", msg: "This book was saved to your Favorites!" })
     } else {
-      setSaveMessage({ type: "danger", msg: "We were unable to save this book to your Bookshelf" })
+      setSaveMessage({ type: "danger", msg: "We were unable to save this book to your Favorites" })
     }
   }
 
@@ -136,9 +136,9 @@ const AddToLibrary = (props) => {
     const saveBookResult = await saveBook.json()
     
     if( saveBookResult.result === "success" ){
-      window.location.reload()
+      setSaveMessage({ type: "success", msg: "This book was saved to your Wishlist!" })
     } else {
-      setSaveMessage({ type: "danger", msg: "We were unable to save this book to your Bookshelf" })
+      setSaveMessage({ type: "danger", msg: "We were unable to save this book to your Wishlist" })
     }
   }
   // End of save book to library

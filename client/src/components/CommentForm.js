@@ -21,7 +21,8 @@ const CommentForm = ({ bookId, username }) => {
     const saveBookResult = await saveBook.json()
     
     if( saveBookResult.result === "success" ){
-      window.location.reload()
+      
+      setSaveMessage({ type: "success", msg: "Your comment has been saved!" })
     } else {
       setSaveMessage({ type: "danger", msg: "We were unable to save this comment" })
     }
@@ -46,7 +47,6 @@ const CommentForm = ({ bookId, username }) => {
       // clear form value
       setBody('');
       setCharacterCount(0);
-      window.location.reload()
     } catch (e) {
       console.error(e);
     }

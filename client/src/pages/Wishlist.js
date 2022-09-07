@@ -88,9 +88,9 @@ const Wishlist = (props) => {
     const saveBookResult = await saveBook.json()
     
     if( saveBookResult.result === "success" ){
-      window.location.reload()
+      setSaveMessage({ type: "success", msg: "This book was saved to your Wishlist!" })
     } else {
-      setSaveMessage({ type: "danger", msg: "We were unable to save this book to your Bookshelf" })
+      setSaveMessage({ type: "danger", msg: "We were unable to save this book to your Wishlist" })
     }
   }
   // End of save book to library
@@ -114,9 +114,9 @@ const Wishlist = (props) => {
     const deleteBookResult = await deleteBook.json()
     
     if( deleteBookResult.result === "success" ){
-      window.location.reload()
+      setSaveMessage({ type: "success", msg: "This book was deleted from your Wishlist!" })
     } else {
-      setDeleteMessage({ type: "danger", msg: "We were unable to deletethis book to your Bookshelf" })
+      setDeleteMessage({ type: "danger", msg: "We were unable to delete this book to your Wishlist" })
     }
   };
 

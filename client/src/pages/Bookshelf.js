@@ -88,7 +88,7 @@ const Bookshelf = (props) => {
     const saveBookResult = await saveBook.json()
     
     if( saveBookResult.result === "success" ){
-      window.location.reload()
+      setSaveMessage({ type: "success", msg: "This book was saved to your Bookshelf!" })
     } else {
       setSaveMessage({ type: "danger", msg: "We were unable to save this book to your Bookshelf" })
     }
@@ -114,7 +114,7 @@ const Bookshelf = (props) => {
     const deleteBookResult = await deleteBook.json()
     
     if( deleteBookResult.result === "success" ){
-      window.location.reload()
+      setSaveMessage({ type: "success", msg: "This book was deleted from your Bookshelf!" })
     } else {
       setDeleteMessage({ type: "danger", msg: "We were unable to deletethis book to your Bookshelf" })
     }
