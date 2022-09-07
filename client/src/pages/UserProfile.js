@@ -1,5 +1,6 @@
 import "./UserProfile.css";
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Col,
@@ -227,7 +228,9 @@ const UserProfile = (props) => {
                         />
                       ) : null}
                       <Card.Body>
-                        <Card.Title>{book.title}</Card.Title>
+                        <Card.Title>
+                          <Link to={`/${book._id}`}>{book.title}</Link>
+                        </Card.Title>
                         <p className="small">Authors: {book.authors}</p>
                         <p className="small">Posted By: {book.username} on {book.createdAt}</p>
                         <Card.Text>{book.review}</Card.Text>
@@ -265,7 +268,9 @@ const UserProfile = (props) => {
                         />
                       ) : null}
                       <Card.Body>
-                        <Card.Title>{book.title}</Card.Title>
+                        <Card.Title>
+                          <Link to={`/${book._id}`}>{book.title}</Link>
+                        </Card.Title>
                         <p className="small">Authors: {book.authors}</p>
                         <p className="small">Posted By: {book.username} on {book.createdAt}</p>
                         <Card.Text>{book.review}</Card.Text>
@@ -303,7 +308,9 @@ const UserProfile = (props) => {
                         />
                       ) : null}
                       <Card.Body>
-                        <Card.Title>{book.title}</Card.Title>
+                        <Card.Title>
+                          <Link to={`/${book._id}`}>{book.title}</Link>
+                        </Card.Title>
                         <p className="small">Authors: {book.authors}</p>
                         <p className="small">Posted By: {book.username} on {book.createdAt}</p>
                         <Card.Text>{book.review}</Card.Text>
