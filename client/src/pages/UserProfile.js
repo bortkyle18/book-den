@@ -18,7 +18,7 @@ const UserProfile = (props) => {
   const [ userData, setUserData ] = useState('')
   
   const getUserData = async(userParam) => {
-    const response = await fetch("../../api/user/"+userParam)
+    const response = await fetch("../api/user/"+userParam)
     const parsedResponse = await response.json()
     if( parsedResponse && parsedResponse.result === "success" ){
       setUserData(parsedResponse.payload)
