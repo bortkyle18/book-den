@@ -119,6 +119,8 @@ const Home = (props) => {
                   <Card.Text>To read or leave comments on this review, click the title of the book above.</Card.Text>
                 </Card.Body>
               </Card>
+              <br/>
+              <br/>
               </Col>
             );
           }
