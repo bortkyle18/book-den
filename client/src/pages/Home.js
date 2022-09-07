@@ -81,7 +81,7 @@ const Home = (props) => {
     </Container>
 
       <Container>
-        {/* <h2>
+      {/* <h2>
         {allBooks.length
           ? `Viewing ${allBooks.length} results:`
           : 'No book posts have been made yet'}
@@ -122,7 +122,8 @@ const Home = (props) => {
               </Col>
             );
           }
-        </Row>
+        }).concat().reverse()}
+      </Row>
       </Container>
     </>
   );
