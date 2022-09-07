@@ -89,7 +89,7 @@ const Home = (props) => {
       <Row xs={1} md={2} className="g-4">
         {// eslint-disable-next-line
         allBooks.map((book) => {
-          if (book.review) {
+          if (book.review.length > 0) {
             return (
               <Col key={book._id}>
               <Card border="dark">
