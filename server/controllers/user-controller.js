@@ -56,9 +56,21 @@ const getUserById = async (req, res) => {
   }
 }
 
+const getUserByUsername = async (req, res) => {
+  try {
+    const getByIdQuery = await User.findOne({username: req.params.username})
+      .select('-__v -password')
+      .populate('library')
+      .populate('following', '-__v -password -_id -email -userPic -library')
+    res.status(200).json({ result: "success", payload: getByIdQuery })
+  } catch(err) {
+    res.status(400).json({ result: "fail", message: 'Unable to find user' })
+  }
+}
+
 const deleteUser = async (req, res) => {
   try {
-    const deleteUserQuery = await User.findOneAndDelete(req.params.userId);
+    const deleteUserQuery = await User.findByIdAndUpdate(req.params.userId);
     res.status(200).json({ result: "successfully deleted user"});
   } catch(err) {
     res.status(400).json({ result: "fail", message: 'Unable to delete user' })
@@ -112,6 +124,7 @@ module.exports = {
   updateUserById,
   getAllUsers,
   getUserById,
+  getUserByUsername,
   authenticateLogin,
   lookupUserByToken,
   deleteUser

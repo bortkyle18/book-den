@@ -20,15 +20,14 @@ const AppNavbar = (props) => {
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
-              <Nav.Link as={Link} to='/'>
-                Home Page
-              </Nav.Link>
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/'>
-                    See Your Books
-                  </Nav.Link>
+                  <Nav.Link as={Link} to='/profile'>My Profile</Nav.Link>
+                  <Nav.Link as={Link} to='/Bookshelf'>Bookshelf</Nav.Link>
+                  <Nav.Link as={Link} to='/Favorites'>Favorites</Nav.Link>
+                  <Nav.Link as={Link} to='/Wishlist'>Wishlist</Nav.Link>
+                  <Nav.Link as={Link} to='/AddBook'>Add Book to Library</Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (

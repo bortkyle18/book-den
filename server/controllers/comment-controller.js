@@ -7,7 +7,7 @@ const addComment = async ({ params, body }, res ) => {
     const newComment = await Comment.create({ ...body })
 
     // find book and update comments array to include new comment
-    const addCommentQuery = await Book.findOneAndUpdate(
+    const addCommentQuery = await Book.findByIdAndUpdate(
       params.bookId,
       { $push: { comments: { ...newComment } } },
       { new: true })
@@ -22,7 +22,7 @@ const addComment = async ({ params, body }, res ) => {
 const updateComment = async ({ params, body }, res ) => {
   try {
     // find comment and update comment
-    const updateCommentQuery = await Comment.findOneAndUpdate(
+    const updateCommentQuery = await Comment.findByIdAndUpdate(
       params.commentId,
       { ...body },
       { new: true })

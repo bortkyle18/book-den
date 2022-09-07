@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { createUser, updateUserById, getAllUsers, getUserById, authenticateLogin, lookupUserByToken, deleteUser } = require('../../controllers/user-controller')
+const { createUser, updateUserById, getAllUsers, getUserById, getUserByUsername, authenticateLogin, lookupUserByToken, deleteUser } = require('../../controllers/user-controller')
 const { follow, unFollow } = require('../../controllers/follow-controller')
 
 
@@ -16,6 +16,9 @@ router.route("/lookup").get(lookupUserByToken)
 router.route('/:userId').get(getUserById)
 router.route('/:userId').put(updateUserById)
 router.route('/:userId').delete(deleteUser)
+
+//   /api/user/username/:username
+router.route('/username/:username').get(getUserByUsername)
 
 //   /api/user/:userId/:followId     =>   add/remove from user follow list
 router.route('/:userId/:followId').put(follow)

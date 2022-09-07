@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Nav, Tab, Modal, Button, Card, Col, Row } from 'react-bootstrap';
 // import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Stack';
 import SignUpForm from './signupform';
 import LoginForm from './Login';
+import Auth from '../utils/auth';
 
 const Home = (props) => {
   const [allBooks, setAllBooks] = useState([]);
@@ -12,7 +14,7 @@ const Home = (props) => {
     try {
       const response =  await fetch('api/book')
       const parsedResponse = await response.json()
-      if( parsedResponse.result === "success" ){
+      if( parsedResponse.result === "success"){
         setAllBooks(parsedResponse.payload)
       }
 
@@ -37,9 +39,11 @@ const Home = (props) => {
       <Card.Body>
         <Card.Title>Welcome to Book Den</Card.Title>
         <Card.Text>
-          With supporting text below as a natural lead-in to additional content.
+          Where you can find your favorite books, add to a wishlist, and interact with other users' book choices!
         </Card.Text>
+        {!Auth.loggedIn() && (
         <Button variant="primary" onClick={() => setShowModal(true)}>Login</Button>
+        )}
       </Card.Body>
       
     </Card>
@@ -77,32 +81,42 @@ const Home = (props) => {
     </Container>
 
       <Container>
-      <h2>
+      {/* <h2>
         {allBooks.length
           ? `Viewing ${allBooks.length} results:`
           : 'No book posts have been made yet'}
-      </h2>
+      </h2> */}
       <Row xs={1} md={2} className="g-4">
-        {allBooks.map((book) => {
-          return (
-            <Col>
-            <Card key={book._id} border="dark">
-              {book.bookCover ? (
-                <Card.Img
-                  src={book.cover}
-                  alt={`The cover for ${book.title}`}
-                  variant="top"
-                />
-              ) : null}
-              <Card.Body>
-                <Card.Title>{book.title}</Card.Title>
-                <p className="small">Authors: {book.authors}</p>
-                <Card.Text>{book.review}</Card.Text>
-              </Card.Body>
-            </Card>
-            </Col>
-          );
-        })}
+        {// eslint-disable-next-line
+        allBooks.map((book) => {
+          if (book.review.length > 0) {
+            return (
+              <Col key={book._id}>
+              <Card border="dark">
+                {book.cover ? (
+                  <Card.Img
+                    src={book.cover}
+                    alt={`The cover for ${book.title}`}
+                    variant="top"
+                  />
+                ) : null}
+                <Card.Body>
+                  <Card.Title>{book.title}</Card.Title>
+                  <p className="small">Authors: {book.authors}</p>
+                  <p>
+                    <Link
+                      to={`/profile/${book.username}`}
+                    >
+                    {book.username}
+                  </Link>{' '}
+                  Posted By: {book.username} on {book.createdAt}</p>
+                  <Card.Text>{book.review}</Card.Text>
+                </Card.Body>
+              </Card>
+              </Col>
+            );
+          }
+        }).concat().reverse()}
       </Row>
       </Container>
     </>

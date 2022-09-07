@@ -4,14 +4,14 @@ const dateFormat = require('../utils/dateFormat');
 
 const bookSchema = new Schema(
   {
-    title: [
+    title: {
+        type: String,
+    },
+    authors: [
       {
         type: String,
       },
     ],
-    authors: {
-      type: String
-    },
     libraryCategory: {
       type: String,
       // libraryCategory is either bookshelf, favorites, or wishlist
@@ -21,11 +21,12 @@ const bookSchema = new Schema(
     cover: {
       type: String
     },
-    review: {
-      type: String,
-      minlength: 5,
-      maxlength: 280
-    },
+    review: [
+      {
+        type: String,
+        minlength: 5
+      }
+    ],
     createdAt: {
       type: Date,
       default: Date.now,
