@@ -21,10 +21,12 @@ const bookSchema = new Schema(
     cover: {
       type: String
     },
-    review: {
-      type: String,
-      minlength: 5
-    },
+    review: [
+      {
+        type: String,
+        minlength: 5
+      }
+    ],
     createdAt: {
       type: Date,
       default: Date.now,

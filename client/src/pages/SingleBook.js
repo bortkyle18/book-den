@@ -1,14 +1,9 @@
 import "./UserProfile.css";
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ReviewForm from "../components/ReviewForm";
 import {
-  Container,
-  Col,
-  Form,
-  Button,
-  Card,
-  Row, 
-  Alert
+  Card
 } from 'react-bootstrap';
 
 
@@ -42,7 +37,13 @@ const SingleBook = (props) => {
         <Card.Body>
           <Card.Title>{bookData.title}</Card.Title>
           <p className="small">Authors: {bookData.authors}</p>
+          <Card.Text>{bookData.review}</Card.Text>
         </Card.Body>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div className="mb-3">{<ReviewForm bookId={bookData._id} />}</div>
       </Card>
     )
   };

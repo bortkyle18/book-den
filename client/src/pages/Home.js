@@ -81,15 +81,10 @@ const Home = (props) => {
     </Container>
 
       <Container>
-      <h2>
-        {allBooks.length
-          ? `Viewing ${allBooks.length} results:`
-          : 'No book posts have been made yet'}
-      </h2>
       <Row xs={1} md={2} className="g-4">
         {// eslint-disable-next-line
         allBooks.map((book) => {
-          if (book.review) {
+          if (book.review.length > 0) {
             return (
               <Col key={book._id}>
               <Card border="dark">
