@@ -88,7 +88,7 @@ const Wishlist = (props) => {
     const saveBookResult = await saveBook.json()
     
     if( saveBookResult.result === "success" ){
-      setSaveMessage({ type: "success", msg: "This book was saved to your Wishlist!" })
+      window.location.reload()
     } else {
       setSaveMessage({ type: "danger", msg: "We were unable to save this book to your Wishlist" })
     }
@@ -114,7 +114,7 @@ const Wishlist = (props) => {
     const deleteBookResult = await deleteBook.json()
     
     if( deleteBookResult.result === "success" ){
-      setDeleteMessage({ type: "success", msg: "This book was deleted from your Wishlist!" })
+      window.location.reload()
     } else {
       setDeleteMessage({ type: "danger", msg: "We were unable to delete this book to your Wishlist" })
     }

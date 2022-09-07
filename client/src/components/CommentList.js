@@ -18,8 +18,7 @@ const CommentList = ({ comments, username }) => {
     const deleteCommentResult = await deleteComment.json()
     
     if( deleteCommentResult.result === "success" ){
-      
-      setDeleteMessage({ type: "success", msg: "Your comment has been deleted!" })
+      window.location.reload()
     } else {
       setDeleteMessage({ type: "danger", msg: "We were unable to delete this comment." })
     }

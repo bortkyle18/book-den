@@ -21,7 +21,7 @@ const ReviewForm = (props) => {
     const saveBookResult = await saveBook.json()
     
     if( saveBookResult.result === "success" ){
-      setSaveMessage({ type: "success", msg: "This book was saved to your Bookshelf!" })
+      window.location.reload()
     } else {
       setSaveMessage({ type: "danger", msg: "We were unable to save this book to your Bookshelf" })
     }
