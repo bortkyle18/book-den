@@ -214,7 +214,7 @@ const Favorites = (props) => {
                         />
                       ) : null}
                       <Card.Body>
-                        <Card.Title>{book.title}</Card.Title>
+                        <Link to={`/MyBook/${book._id}`}>{book.title}</Link>
                         <p className="small">Authors: {book.authors}</p>
                         <p>
                           <>Posted By: You -  </>

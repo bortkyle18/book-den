@@ -231,6 +231,16 @@ const UserProfile = (props) => {
                         <p className="small">Authors: {book.authors}</p>
                         <Button
                           className="btn-block btn-info"
+                          onClick={() => handleSaveBookToBookshelf(book)}
+                        >Save to Bookshelf
+                        </Button>
+                        <Button
+                          className="btn-block btn-info"
+                          onClick={() => handleSaveBookToFavorites(book)}
+                        >Save to Favorites
+                        </Button>
+                        <Button
+                          className="btn-block btn-info"
                           onClick={() => handleSaveBookToWishlist(book)}
                         >Save to Wishlist
                         </Button>
