@@ -25,9 +25,7 @@ const UserProfile = (props) => {
     }
   }
 
-  useEffect(() => {
     getUserData(userParam);
-  }, [userParam])
   
   // Search to add books
   const [searchedBooks, setSearchedBooks] = useState([]);
