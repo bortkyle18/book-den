@@ -5,9 +5,9 @@ const { addComment, updateComment, removeComment } = require('../../controllers/
 //   /api/comment/:bookId
 router.route('/:bookId').post(addComment)
 
-//   /api/comment/:bookId/:commentId
-router.route('/:bookId/:commentId').put(updateComment)
-router.route('/:bookId/:commentId').delete(removeComment)
+//   /api/comment/:commentId
+router.route('/:commentId').put(updateComment)
+router.route('/:commentId').delete(removeComment)
 
 
 module.exports = router;

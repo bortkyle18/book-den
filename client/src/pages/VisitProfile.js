@@ -1,6 +1,6 @@
 import "./UserProfile.css";
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import {
   Col,
   Card,
@@ -13,7 +13,7 @@ const UserProfile = () => {
   const [ userData, setUserData ] = useState('')
   
   const getUserData = async(userParam) => {
-    const response = await fetch("api/user/"+userParam)
+    const response = await fetch("../api/user/username/"+userParam)
     const parsedResponse = await response.json()
     if( parsedResponse && parsedResponse.result === "success" ){
       setUserData(parsedResponse.payload)
@@ -81,7 +81,9 @@ const UserProfile = () => {
                           />
                         ) : null}
                         <Card.Body>
-                          <Card.Title>{book.title}</Card.Title>
+                          <Link to={`/book/${book.username}/${book._id}`}>
+                            <Card.Title>{book.title}</Card.Title>
+                          </Link>
                           <p className="small">Authors: {book.authors}</p>
                           <p className="small">Posted By: {book.username} on {book.createdAt}</p>
                           <Card.Text>{book.review}</Card.Text>
@@ -108,7 +110,9 @@ const UserProfile = () => {
                           />
                         ) : null}
                         <Card.Body>
-                          <Card.Title>{book.title}</Card.Title>
+                          <Link to={`/book/${book.username}/${book._id}`}>
+                            <Card.Title>{book.title}</Card.Title>
+                          </Link>
                           <p className="small">Authors: {book.authors}</p>
                           <p className="small">Posted By: {book.username} on {book.createdAt}</p>
                           <Card.Text>{book.review}</Card.Text>
@@ -135,7 +139,9 @@ const UserProfile = () => {
                           />
                         ) : null}
                         <Card.Body>
-                          <Card.Title>{book.title}</Card.Title>
+                          <Link to={`/book/${book.username}/${book._id}`}>
+                            <Card.Title>{book.title}</Card.Title>
+                          </Link>
                           <p className="small">Authors: {book.authors}</p>
                           <p className="small">Posted By: {book.username} on {book.createdAt}</p>
                           <Card.Text>{book.review}</Card.Text>

@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from '../pages/signupform';
 import LoginForm from '../pages/Login';
-import Auth from '../utils/auth';
+import auth from '../utils/auth';
 
 
 const AppNavbar = (props) => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
+  const { authUser } = props
+
 
   return (
     <>
@@ -21,16 +23,17 @@ const AppNavbar = (props) => {
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
               {/* if user is logged in show saved books and logout */}
-              {Auth.loggedIn() ? (
+              {authUser && auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/profile'>My Profile</Nav.Link>
-                  <Nav.Link as={Link} to='/Bookshelf'>Bookshelf</Nav.Link>
-                  <Nav.Link as={Link} to='/Favorites'>Favorites</Nav.Link>
-                  <Nav.Link as={Link} to='/Wishlist'>Wishlist</Nav.Link>
-                  <Nav.Link as={Link} to='/AddBook'>Add Book to Library</Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                  <Nav.Link as={Link} to={`/MyProfile/${authUser._id}`}>My Profile</Nav.Link>
+                  <Nav.Link as={Link} to={`/Bookshelf/${authUser._id}`}>Bookshelf</Nav.Link>
+                  <Nav.Link as={Link} to={`/Favorites/${authUser._id}`}>Favorites</Nav.Link>
+                  <Nav.Link as={Link} to={`/Wishlist/${authUser._id}`}>Wishlist</Nav.Link>
+                  <Nav.Link as={Link} to={`/AddBook/${authUser._id}`}>Add Book to Library</Nav.Link>
+                  <Nav.Link onClick={auth.logout}>Logout</Nav.Link>
                 </>
-              ) : (
+              ) 
+              : (
                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
               )}
             </Nav>
