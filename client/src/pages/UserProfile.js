@@ -291,6 +291,9 @@ const UserProfile = (props) => {
                           <p className="small">Authors: {book.authors}</p>
                           <p className="small">Posted By: {book.username} on {book.createdAt}</p>
                           <Card.Text>{book.review}</Card.Text>
+                          <br />
+                          <br />
+                          <Card.Text>To write or rewrite a review, click the title of the book above.</Card.Text>
                           <Button
                           className="btn-block btn-danger"
                           onClick={() => handleDeleteBook(book)}
@@ -326,11 +329,14 @@ const UserProfile = (props) => {
                         ) : null}
                         <Card.Body>
                           <Card.Title>
-                            <Link to={`/${book._id}`}>{book.title}</Link>
+                            <Link to={`/MyBook/${book._id}`}>{book.title}</Link>
                           </Card.Title>
                           <p className="small">Authors: {book.authors}</p>
                           <p className="small">Posted By: {book.username} on {book.createdAt}</p>
                           <Card.Text>{book.review}</Card.Text>
+                          <br />
+                          <br />
+                          <Card.Text>To write or rewrite a review, click the title of the book above.</Card.Text>
                           <Button
                           className="btn-block btn-danger"
                           onClick={() => handleDeleteBook(book)}
@@ -366,11 +372,14 @@ const UserProfile = (props) => {
                         ) : null}
                         <Card.Body>
                           <Card.Title>
-                            <Link to={`/${book._id}`}>{book.title}</Link>
+                            <Link to={`/MyBook/${book._id}`}>{book.title}</Link>
                           </Card.Title>
                           <p className="small">Authors: {book.authors}</p>
                           <p className="small">Posted By: {book.username} on {book.createdAt}</p>
                           <Card.Text>{book.review}</Card.Text>
+                          <br />
+                          <br />
+                          <Card.Text>To write or rewrite a review, click the title of the book above.</Card.Text>
                           <Button
                           className="btn-block btn-danger"
                           onClick={() => handleDeleteBook(book)}

@@ -223,6 +223,9 @@ const Bookshelf = (props) => {
                         </Link>{' '}
                         on {book.createdAt}</p>
                         <Card.Text>{book.review}</Card.Text>
+                          <br />
+                          <br />
+                          <Card.Text>To write or rewrite a review, click the title of the book above.</Card.Text>
                         <Button
                           className="btn-block btn-danger"
                           onClick={() => handleDeleteBook(book)}
@@ -267,6 +270,9 @@ const Bookshelf = (props) => {
                         </Link>{' '}
                         on {book.createdAt}</p>
                         <Card.Text>{book.review}</Card.Text>
+                          <br />
+                          <br />
+                          <Card.Text>To write or rewrite a review, click the title of the book above.</Card.Text>
                         <Button
                           className="btn-block btn-danger"
                           onClick={() => handleDeleteBook(book)}
