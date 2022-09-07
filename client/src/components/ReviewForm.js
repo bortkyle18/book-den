@@ -13,7 +13,7 @@ const ReviewForm = (props) => {
     }
 
     setSaveMessage({ type: "", msg: "" })
-    const saveBook = await fetch("/api/book/"+bookId, {
+    const saveBook = await fetch("https://glacial-ridge-11514.herokuapp.com/api/book/"+bookId, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(reviewToSave)

@@ -30,7 +30,7 @@ const SignupForm = () => {
     }
 
     try {
-      const response = await fetch('/api/user', {
+      const response = await fetch('https://glacial-ridge-11514.herokuapp.com/api/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ const SignupForm = () => {
         throw new Error('something went wrong!');
       }
 
-      const authCheck = await fetch("/api/user/auth", {
+      const authCheck = await fetch("https://glacial-ridge-11514.herokuapp.com/api/user/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userFormData)

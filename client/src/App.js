@@ -20,10 +20,10 @@ function App() {
   const [ authUser, setAuthUser ] = useState(null)
 
   const checkForValidUser = async() => {
-    const authCheck = await fetch("/api/user/lookup")
+    const authCheck = await fetch("https://glacial-ridge-11514.herokuapp.com/api/user/lookup")
     const checkAuthResult = await authCheck.json()
     if( checkAuthResult && checkAuthResult.result === "success" ){
-      const userData = await fetch("/api/user/"+checkAuthResult.payload._id)
+      const userData = await fetch("https://glacial-ridge-11514.herokuapp.com/api/user/"+checkAuthResult.payload._id)
       const checkUserDataResult = await userData.json()
       if( checkUserDataResult && checkUserDataResult.result === "success" ){
         setAuthUser(checkUserDataResult.payload)

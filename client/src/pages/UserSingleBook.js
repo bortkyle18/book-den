@@ -12,7 +12,7 @@ const UserSingleBook = (props) => {
   const [ bookData, setBookData ] = useState('')
   
   const getBookData = async(bookParam) => {
-    const response = await fetch("../api/book/"+bookParam)
+    const response = await fetch("https://glacial-ridge-11514.herokuapp.com/api/book/"+bookParam)
     const parsedResponse = await response.json()
     if( parsedResponse && parsedResponse.result === "success" ){
       setBookData(parsedResponse.payload)

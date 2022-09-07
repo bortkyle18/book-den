@@ -11,7 +11,7 @@ const CommentList = ({ comments, username }) => {
     console.log(comment)
     const commentId = comment._id
     setDeleteMessage({ type: "", msg: "" })
-    const deleteComment = await fetch("../../api/comment/"+commentId, {
+    const deleteComment = await fetch("https://glacial-ridge-11514.herokuapp.com/api/comment/"+commentId, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     })

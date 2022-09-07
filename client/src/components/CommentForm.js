@@ -13,7 +13,7 @@ const CommentForm = ({ bookId, username }) => {
     }
 
     setSaveMessage({ type: "", msg: "" })
-    const saveBook = await fetch("../../api/comment/"+bookId, {
+    const saveBook = await fetch("https://glacial-ridge-11514.herokuapp.com/api/comment/"+bookId, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(commentToSave)
