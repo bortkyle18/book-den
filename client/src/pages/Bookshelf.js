@@ -16,7 +16,7 @@ const Bookshelf = (props) => {
   const [ userData, setUserData ] = useState('')
   
   const getUserData = async(userParam) => {
-    const response = await fetch("https://glacial-ridge-11514.herokuapp.com/api/user/"+userParam)
+    const response = await fetch("../api/user/"+userParam)
     const parsedResponse = await response.json()
     if( parsedResponse && parsedResponse.result === "success" ){
       setUserData(parsedResponse.payload)
@@ -80,7 +80,7 @@ const Bookshelf = (props) => {
     }
 
     setSaveMessage({ type: "", msg: "" })
-    const saveBook = await fetch("https://glacial-ridge-11514.herokuapp.com/api/book/"+userId, {
+    const saveBook = await fetch("../api/book/"+userId, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(bookToSave)
@@ -106,7 +106,7 @@ const Bookshelf = (props) => {
   ) => {
     const bookId = book._id
     setDeleteMessage({ type: "", msg: "" })
-    const deleteBook = await fetch("https://glacial-ridge-11514.herokuapp.com/api/book/"+bookId, {
+    const deleteBook = await fetch("../api/book/"+bookId, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       

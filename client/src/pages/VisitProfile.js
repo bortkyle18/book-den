@@ -13,7 +13,7 @@ const UserProfile = () => {
   const [ userData, setUserData ] = useState('')
   
   const getUserData = async(userParam) => {
-    const response = await fetch("https://glacial-ridge-11514.herokuapp.com/api/user/username/"+userParam)
+    const response = await fetch("../api/user/username/"+userParam)
     const parsedResponse = await response.json()
     if( parsedResponse && parsedResponse.result === "success" ){
       setUserData(parsedResponse.payload)

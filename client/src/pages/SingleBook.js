@@ -13,9 +13,9 @@ const SingleBook = (props) => {
   const [ authUser, setAuthUser ] = useState(null)
 
   const checkForValidUser = async() => {
-    const authCheck = await fetch("https://glacial-ridge-11514.herokuapp.com/api/user/lookup")
+    const authCheck = await fetch("../../api/user/lookup")
     const checkAuthResult = await authCheck.json()
-    const getUserData = await fetch("https://glacial-ridge-11514.herokuapp.com/api/user/"+checkAuthResult.payload._id)
+    const getUserData = await fetch("../../api/user/"+checkAuthResult.payload._id)
     const userData = await getUserData.json()
     if( userData && userData.result === "success" ){
       setAuthUser(userData.payload)
@@ -30,7 +30,7 @@ const SingleBook = (props) => {
   const [ bookData, setBookData ] = useState('')
   
   const getBookData = async(bookParam) => {
-    const response = await fetch("https://glacial-ridge-11514.herokuapp.com/api/book/"+bookParam)
+    const response = await fetch("../../api/book/"+bookParam)
     const parsedResponse = await response.json()
     if( parsedResponse && parsedResponse.result === "success" ){
       setBookData(parsedResponse.payload)

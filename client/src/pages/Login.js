@@ -11,7 +11,7 @@ const LoginPage = (props) => {
   const handleLogin = async (e) => {
     e.preventDefault()
     setFormMessage({ type: "", msg: "" })
-    const authCheck = await fetch("https://glacial-ridge-11514.herokuapp.com//api/user/auth", {
+    const authCheck = await fetch("/api/user/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(loginCreds)
