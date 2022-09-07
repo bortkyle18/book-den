@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 
 
-const SingleBook = (props) => {
+const UserSingleBook = (props) => {
   const { bookId: bookParam } = useParams();
   const [ bookData, setBookData ] = useState('')
   
@@ -49,4 +49,4 @@ const SingleBook = (props) => {
   };
 }
 
-export default SingleBook;
+export default UserSingleBook;

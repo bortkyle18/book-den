@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Container from "react-bootstrap/Container"
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import SingleBook from './pages/SingleBook';
+import UserSingleBook from './pages/UserSingleBook';
 import UserProfile from './pages/UserProfile';
 import Bookshelf from "./pages/Bookshelf";
 import Favorites from "./pages/Favorites";
@@ -46,7 +46,7 @@ function App() {
               <Route path=":username" element={<VisitProfile />} />
               <Route path="" element={<UserProfile authUser={authUser}/>} />
             </Route>
-            <Route path="/:bookId" element={<SingleBook />} />
+            <Route path="/:bookId" element={<UserSingleBook />} />
             <Route path="/Bookshelf" element={<Bookshelf authUser={authUser} />}></Route>
             <Route path="/Favorites" element={<Favorites authUser={authUser} />}></Route>
             <Route path="/Wishlist" element={<Wishlist authUser={authUser} />}></Route>
