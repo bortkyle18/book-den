@@ -1,10 +1,10 @@
-import React from 'react';
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Container from "react-bootstrap/Container"
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import UserSingleBook from './pages/UserSingleBook';
+import SingleBook from './pages/SingleBook';
 import UserProfile from './pages/UserProfile';
 import Bookshelf from "./pages/Bookshelf";
 import Favorites from "./pages/Favorites";
@@ -39,18 +39,17 @@ function App() {
     <div className="App">
       <Container>
         <Router>
-        <Navbar authUser={ authUser } />
+        <Navbar authUser={authUser}/>
         <Routes>
             <Route path="/" element={<Home/>} />
-            <Route path="/profile">
-              <Route path=":username" element={<VisitProfile />} />
-              <Route path="" element={<UserProfile authUser={authUser}/>} />
-            </Route>
-            <Route path="/:bookId" element={<UserSingleBook />} />
-            <Route path="/Bookshelf" element={<Bookshelf authUser={authUser} />}></Route>
-            <Route path="/Favorites" element={<Favorites authUser={authUser} />}></Route>
-            <Route path="/Wishlist" element={<Wishlist authUser={authUser} />}></Route>
-            <Route path="/AddBook" element={<AddToLibrary authUser={authUser} />}></Route>
+            <Route path="profile/:username" element={<VisitProfile />} />
+            <Route path="MyProfile/:userId" element={<UserProfile />} />
+            <Route path="MyBook/:bookId" element={<UserSingleBook />} />
+            <Route path="/book/:username/:bookId" element={<SingleBook authUser={authUser} />} />
+            <Route path="/Bookshelf/:userId" element={<Bookshelf />}></Route>
+            <Route path="/Favorites/:userId" element={<Favorites />}></Route>
+            <Route path="/Wishlist/:userId" element={<Wishlist />}></Route>
+            <Route path="/AddBook/:userId" element={<AddToLibrary />}></Route>
             <Route path='*' element={<PageNotFound />}/>
           </Routes>
         </Router>

@@ -1,18 +1,36 @@
 import "./UserProfile.css";
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import ReviewForm from "../components/ReviewForm";
+import CommentForm from "../components/CommentForm";
+import CommentList from "../components/CommentList";
 import {
   Card
 } from 'react-bootstrap';
+import auth from "../utils/auth";
 
 
-const UserSingleBook = (props) => {
+const SingleBook = (props) => {
+  const [ authUser, setAuthUser ] = useState(null)
+
+  const checkForValidUser = async() => {
+    const authCheck = await fetch("../../api/user/lookup")
+    const checkAuthResult = await authCheck.json()
+    const getUserData = await fetch("../../api/user/"+checkAuthResult.payload._id)
+    const userData = await getUserData.json()
+    if( userData && userData.result === "success" ){
+      setAuthUser(userData.payload)
+    }
+  }
+
+  useEffect(() => {
+    checkForValidUser()
+  }, [])
+
   const { bookId: bookParam } = useParams();
   const [ bookData, setBookData ] = useState('')
   
   const getBookData = async(bookParam) => {
-    const response = await fetch("../api/book/"+bookParam)
+    const response = await fetch("../../api/book/"+bookParam)
     const parsedResponse = await response.json()
     if( parsedResponse && parsedResponse.result === "success" ){
       setBookData(parsedResponse.payload)
@@ -24,7 +42,7 @@ const UserSingleBook = (props) => {
   }, [bookParam])
 
 
-  if (bookData) {
+  if (bookData && authUser) {
     return (
       <Card key={bookData._id} border="dark">
         {bookData.cover ? (
@@ -38,10 +56,11 @@ const UserSingleBook = (props) => {
           <Card.Title>{bookData.title}</Card.Title>
           <p className="small">Authors: {bookData.authors}</p>
           <p>
-            <>Posted By: You -  </>
+            <>Posted By: </>
             <Link
               to={`/profile/${bookData.username}`}
-            >{bookData.username}
+            >
+            {bookData.username}
           </Link>{' '}
           on {bookData.createdAt}</p>
           <Card.Text>{bookData.review}</Card.Text>
@@ -50,10 +69,13 @@ const UserSingleBook = (props) => {
         <br />
         <br />
         <br />
-        <div className="mb-3">{<ReviewForm bookId={bookData._id} />}</div>
+        <div className="mb-3">
+          {bookData.commentCount > 0 && <CommentList comments={bookData.comments} username={authUser.username} />}
+          {auth.loggedIn() && <CommentForm bookId={bookData._id} username={authUser.username} />}
+        </div>
       </Card>
     )
   };
 }
 
-export default UserSingleBook;
+export default SingleBook;
