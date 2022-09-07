@@ -14,7 +14,7 @@ const getAllBooks = async (req, res) => {
 
 const getBookById = async (req, res) => {
   try {
-    const getBookByIdQuery = await Book.findById(req.params.userId)
+    const getBookByIdQuery = await Book.findById(req.params.bookId)
       .select('-__v')
       .populate('comments')
     res.status(200).json({ result: "success", payload: getBookByIdQuery })
