@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Nav, Tab, Modal, Button, Card, Col, Row } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Nav, Tab, Modal, Button, Card, Col, Row } from "react-bootstrap";
 // import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Stack';
 import SignUpForm from './signupform';
@@ -12,23 +12,23 @@ const Home = (props) => {
 
   const displayBooks = async () => {
     try {
-      const response =  await fetch('api/book')
-      const parsedResponse = await response.json()
-      if( parsedResponse.result === "success"){
-        setAllBooks(parsedResponse.payload)
+      const response = await fetch("api/book");
+      const parsedResponse = await response.json();
+      if (parsedResponse.result === "success") {
+        setAllBooks(parsedResponse.payload);
       }
 
       if (!response.ok) {
-        throw new Error('something went wrong!');
+        throw new Error("something went wrong!");
       }
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
-  useEffect( () => {
+  useEffect(() => {
     displayBooks();
-  }, [])
+  }, []);
 
   const [showModal, setShowModal] = useState(false);
   return (
@@ -81,7 +81,7 @@ const Home = (props) => {
     </Container>
 
       <Container>
-      {/* <h2>
+        {/* <h2>
         {allBooks.length
           ? `Viewing ${allBooks.length} results:`
           : 'No book posts have been made yet'}
@@ -122,11 +122,10 @@ const Home = (props) => {
               </Col>
             );
           }
-        }).concat().reverse()}
-      </Row>
+        </Row>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -25,7 +25,7 @@ header {
   font-size: 55px;
   font-weight: 350;
   font-style: bold;
-  color: black;
+  color: white;
 }
 
 /* MAIN SECTION */
@@ -171,4 +171,13 @@ footer .row ul li {
 footer .row a i {
   font-size: 2em;
   margin: 0% 1%;
+}
+
+.card-container {
+  margin-top: 50px;
+  width: 500px;
+  overflow: hidden;
+  box-shadow: 10px 10px 10px 10px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.55);
 }

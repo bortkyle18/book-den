@@ -8,10 +8,9 @@ import {
   Form,
   Button,
   Card,
-  Row, 
-  Alert
-} from 'react-bootstrap';
-
+  Row,
+  Alert,
+} from "react-bootstrap";
 
 const UserProfile = (props) => {
   const { userId: userParam } = useParams();
@@ -32,7 +31,7 @@ const UserProfile = (props) => {
   // Search to add books
   const [searchedBooks, setSearchedBooks] = useState([]);
 
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
 
   // create method to search for books and set state on form submit
   const handleFormSubmit = async (event) => {
@@ -44,11 +43,11 @@ const UserProfile = (props) => {
 
     try {
       const response = await fetch(
-          `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
+        `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
       );
 
       if (!response.ok) {
-        throw new Error('something went wrong!');
+        throw new Error("something went wrong!");
       }
 
       const { items } = await response.json();
@@ -56,18 +55,17 @@ const UserProfile = (props) => {
       const bookData = items.map((book) => ({
         bookId: book.bookId,
         title: book.volumeInfo.title,
-        authors: book.volumeInfo.authors || ['No author to display'],
-        cover: book.volumeInfo.imageLinks?.thumbnail || '',
+        authors: book.volumeInfo.authors || ["No author to display"],
+        cover: book.volumeInfo.imageLinks?.thumbnail || "",
       }));
 
       setSearchedBooks(bookData);
-      setSearchInput('');
+      setSearchInput("");
     } catch (err) {
       console.error(err);
     }
   };
   // End of search to add books
-
 
   // Get my books
   const userBooks = userData.library
@@ -75,11 +73,10 @@ const UserProfile = (props) => {
   
   // End of get my books
 
-
   // Save book to library
-  const [ saveMessage, setSaveMessage ] = useState({ type: "", msg: "" })
+  const [saveMessage, setSaveMessage] = useState({ type: "", msg: "" });
 
-  const handleSaveBookToBookshelf = async(book) => {
+  const handleSaveBookToBookshelf = async (book) => {
     const bookToSave = {
       title: book.title,
       cover: book.cover,
@@ -99,11 +96,14 @@ const UserProfile = (props) => {
     if( saveBookResult.result === "success" ){
       window.location.reload()
     } else {
-      setSaveMessage({ type: "danger", msg: "We were unable to save this book to your Bookshelf" })
+      setSaveMessage({
+        type: "danger",
+        msg: "We were unable to save this book to your Bookshelf",
+      });
     }
-  }
+  };
 
-  const handleSaveBookToFavorites = async(book) => {
+  const handleSaveBookToFavorites = async (book) => {
     const bookToSave = {
       title: book.title,
       cover: book.cover,
@@ -125,9 +125,9 @@ const UserProfile = (props) => {
     } else {
       setSaveMessage({ type: "danger", msg: "We were unable to save this book to your Favorites" })
     }
-  }
+  };
 
-  const handleSaveBookToWishlist = async(book) => {
+  const handleSaveBookToWishlist = async (book) => {
     const bookToSave = {
       title: book.title,
       cover: book.cover,
@@ -405,6 +405,5 @@ const UserProfile = (props) => {
     );
   };
 }
-
 
 export default UserProfile;
