@@ -191,6 +191,60 @@ const UserProfile = (props) => {
           </p>
           <br />
 
+          Add 
+            <span className="text-primary"> Book</span> To Wishlist
+            <Form onSubmit={handleFormSubmit}>
+                <Col xs={12} md={8}>
+                  <Form.Control
+                    name="searchInput"
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                    type="text"
+                    size="lg"
+                    placeholder="Search for a book"
+                  />
+                </Col>
+                <Col xs={12} md={4}>
+                  <Button type="submit" variant="success" size="lg">
+                    Submit Search
+                  </Button>
+                </Col>
+            </Form>
+            <Container>
+              <h2>
+                {searchedBooks.length
+                  ? `Viewing ${searchedBooks.length} results:`
+                  : 'Search for a book to begin'}
+              </h2>
+                {searchedBooks.map((book) => {
+                  return (
+                    <Card key={book.bookId} border="dark">
+                      {book.cover ? (
+                        <Card.Img
+                          src={book.cover}
+                          alt={`The cover for ${book.title}`}
+                          variant="top"
+                        />
+                      ) : null}
+                      <Card.Body>
+                        <Card.Title>{book.title}</Card.Title>
+                        <p className="small">Authors: {book.authors}</p>
+                        <Button
+                          className="btn-block btn-info"
+                          onClick={() => handleSaveBookToWishlist(book)}
+                        >Save to Wishlist
+                        </Button>
+                        { saveMessage.msg.length > 0 && (
+                          <Alert variant={saveMessage.type} style={{ marginTop: "2em" }}>
+                            { saveMessage.msg }
+                          </Alert>
+                        )}
+                      </Card.Body>
+                    </Card>
+                  );
+                })}
+            </Container>
+              <br />
           <div className="container mt-4">
             <div className="display-4 text-center">
               <i className="fas fa-book-open text-primary">
@@ -325,75 +379,9 @@ const UserProfile = (props) => {
                   }
                 })}
               </Row>
-              Add 
-              <span className="text-primary"> Book</span> To Library
+              <br />
             </div>
-            <Form onSubmit={handleFormSubmit}>
-                <Col xs={12} md={8}>
-                  <Form.Control
-                    name="searchInput"
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    type="text"
-                    size="lg"
-                    placeholder="Search for a book"
-                  />
-                </Col>
-                <Col xs={12} md={4}>
-                  <Button type="submit" variant="success" size="lg">
-                    Submit Search
-                  </Button>
-                </Col>
-            </Form>
           </div>
-
-          <br />
-          <br />
-          <br />
-          <Container>
-          <h2>
-            {searchedBooks.length
-              ? `Viewing ${searchedBooks.length} results:`
-              : 'Search for a book to begin'}
-          </h2>
-            {searchedBooks.map((book) => {
-              return (
-                <Card key={book.bookId} border="dark">
-                  {book.cover ? (
-                    <Card.Img
-                      src={book.cover}
-                      alt={`The cover for ${book.title}`}
-                      variant="top"
-                    />
-                  ) : null}
-                  <Card.Body>
-                    <Card.Title>{book.title}</Card.Title>
-                    <p className="small">Authors: {book.authors}</p>
-                    <Button
-                      className="btn-block btn-info"
-                      onClick={() => handleSaveBookToBookshelf(book)}
-                    >Save to Bookshelf
-                    </Button>
-                    <Button
-                      className="btn-block btn-info"
-                      onClick={() => handleSaveBookToFavorites(book)}
-                    >Save to Favorites
-                    </Button>
-                    <Button
-                      className="btn-block btn-info"
-                      onClick={() => handleSaveBookToWishlist(book)}
-                    >Save to Wishlist
-                    </Button>
-                    { saveMessage.msg.length > 0 && (
-                      <Alert variant={saveMessage.type} style={{ marginTop: "2em" }}>
-                        { saveMessage.msg }
-                      </Alert>
-                    )}
-                  </Card.Body>
-                </Card>
-              );
-            })}
-        </Container>
         </div>
     );
   };
