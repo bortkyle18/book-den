@@ -16,9 +16,9 @@
 ## User Story
 
 ````
-AS AN user 
-I WANT 
-SO THAT
+AS AN user who loves to read
+I WANT to be able to add books I've read, create a wishlist of books I want to read, and review books
+SO THAT I can share my love of books and interact with others who love books just as much
 ````
 
 ## Installation
@@ -38,7 +38,10 @@ Run the following commands:
 
 ## Preview
 
-![Preview]()
+<p align="center">
+  <img src="./client/src/assets/images/screenshot.png" width="350"
+
+</p>
 
 Check out the deployed application [here](https://glacial-ridge-11514.herokuapp.com/).
 
