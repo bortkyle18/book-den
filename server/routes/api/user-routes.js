@@ -12,13 +12,13 @@ router.route("/auth").post(authenticateLogin)
 //   /api/user/lookup
 router.route("/lookup").get(lookupUserByToken)
 
+//   /api/user/:username
+router.route('/username/:username').get(getUserByUsername)
+
 //   /api/user/:userId
 router.route('/:userId').get(getUserById)
 router.route('/:userId').put(updateUserById)
 router.route('/:userId').delete(deleteUser)
-
-//   /api/user/username/:username
-router.route('/username/:username').get(getUserByUsername)
 
 //   /api/user/:userId/:followId     =>   add/remove from user follow list
 router.route('/:userId/:followId').put(follow)
