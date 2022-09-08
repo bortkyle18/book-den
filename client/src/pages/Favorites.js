@@ -172,7 +172,7 @@ const Favorites = (props) => {
                     <p className="small">Authors: {book.authors}</p>
                     <div className="text-center">
                       <Button
-                        className="btn-block btn-info"
+                        className="btn-block btn-success"
                         onClick={() => handleSaveBookToFavorites(book)}
                       >
                         Save to Favorites

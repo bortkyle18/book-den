@@ -172,7 +172,7 @@ const Wishlist = (props) => {
                     <p className="small">Authors: {book.authors}</p>
                     <div className="text-center">
                       <Button
-                        className="btn-block btn-info"
+                        className="btn-block btn-success"
                         onClick={() => handleSaveBookToWishlist(book)}
                       >
                         Save to Wishlist

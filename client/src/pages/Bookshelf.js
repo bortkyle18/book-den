@@ -199,13 +199,13 @@ const Bookshelf = (props) => {
                     <p className="small">Authors: {book.authors}</p>
                     <div className="text-center">
                       <Button
-                        className="btn-block btn-info"
+                        className="btn-block btn-success"
                         onClick={() => handleSaveBookToBookshelf(book)}
                       >
                         Save to Bookshelf
                       </Button>
                       <Button
-                        className="btn-block btn-info"
+                        className="btn-block btn-success"
                         onClick={() => handleSaveBookToFavorites(book)}
                       >
                         Save to Bookshelf
