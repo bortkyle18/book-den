@@ -1,8 +1,15 @@
-body {
-  background-image:url(./assets/images/background1.jpg);
-  background-size: cover;
+.body {
+  background-color: #EADDCA;
 }
 
 .home {
   padding: 50px 0px 50px;
+}
+
+.btn {
+  margin: 1rem 1rem 0 0;
+}
+
+.search, .bookCard {
+  margin: .1rem 3.6rem .1rem 0
 }
