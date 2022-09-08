@@ -126,17 +126,15 @@ const Favorites = (props) => {
     return (
       <div>
         <br />
-        <h1>
-          <span style={{ fontWeight: "bold" }}>
+        <h1 className="text-center userName">
             {userData.username}'s Favorites
-          </span>
         </h1>
         <br />
         <h4>
           Add <span className="text-success"> Book</span> To Favorites
         </h4>
         <Form onSubmit={handleFormSubmit}>
-          <Col xs={12} md={8} flex>
+          <Col xs={12} md={5}>
             <Form.Control
               name="searchInput"
               value={searchInput}
@@ -154,9 +152,9 @@ const Favorites = (props) => {
           <h4>
             {searchedBooks.length
               ? `Viewing ${searchedBooks.length} results:`
-              : "Search for a book to begin"}
+              : ""}
           </h4>
-          <Row xs={1} md={4} className="g-4">
+          <Row xs={2} md={4} className="g-4">
             {searchedBooks.map((book) => {
               return (
                 <Card key={book.bookId} border="dark" className="search">
@@ -192,14 +190,16 @@ const Favorites = (props) => {
             })}
           </Row>
         </Container>
-        <h1 align="center">Favorites</h1>
-        <Row xs={1} md={3} className="g-4 bookCard">
+        <br />
+        <br />
+        <Row xs={2} md={3} className="g-4 bookCard">
           {
             // eslint-disable-next-line
             userBooks.map((book) => {
               if (book.libraryCategory === "Favorites") {
                 return (
                   <Col key={book._id}>
+                    <h1 align="center">Favorites</h1>
                     <Card border="dark">
                       {book.cover ? (
                         <Card.Img

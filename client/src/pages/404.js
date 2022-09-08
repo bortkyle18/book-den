@@ -1,7 +1,12 @@
 const PageNotFound = (props) => {
   return (
-    <div>
-      <p>Page Not Found.</p>
+    <div className="text-center">
+      <br/>
+      <br/>
+      <br/>
+      <h1>Oh No! Page Not Found.</h1>
+      <br/>
+      <h1>Check Your Spelling and Grammar</h1>
     </div>
   );
 };

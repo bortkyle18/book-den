@@ -42,7 +42,6 @@ const UserSingleBook = (props) => {
 
   if (bookData && authUser) {
     return (
-      
       <Col>
       <br />
         <Row key={bookData._id} xs={2} md={2} className="g-4">

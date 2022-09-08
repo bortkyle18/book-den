@@ -155,11 +155,15 @@ const AddToLibrary = (props) => {
     return (
       <div>
         <br />
+        <h1 className="text-center userName">
+          {userData.username}
+        </h1>
+        <br />
         <h4>
-          Add <span className="text-success"> Book</span> To Wishlist
+          Add <span className="text-success"> Book</span> To Your Library
         </h4>
         <Form onSubmit={handleFormSubmit}>
-          <Col xs={12} md={8} flex>
+          <Col xs={12} md={5}>
             <Form.Control
               name="searchInput"
               value={searchInput}
@@ -177,9 +181,9 @@ const AddToLibrary = (props) => {
           <h4>
             {searchedBooks.length
               ? `Viewing ${searchedBooks.length} results:`
-              : "Search for a book to begin"}
+              : ""}
           </h4>
-          <Row xs={1} md={4} className="g-4">
+          <Row xs={2} md={4} className="g-4">
             {searchedBooks.map((book) => {
               return (
                 <Card key={book.bookId} border="dark" className="search">

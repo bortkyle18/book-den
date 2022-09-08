@@ -13,3 +13,8 @@
 .search, .bookCard {
   margin: .1rem 3.6rem .1rem 0
 }
+
+.userName {
+  font-size: 4rem;
+  font-style: italic;
+}

@@ -27,19 +27,18 @@ const UserProfile = () => {
     return (
       <div>
         <br />
-        <h1>
-          <span style={{ fontWeight: "bold" }}>Username:</span>{" "}
+        <h1 align="center" className="userName">
           {userData.username}
         </h1>
         <br />
-        <h1 align="center">Wishlist</h1>
-        <Row xs={1} md={3} className="g-4 bookCard">
+        <Row xs={2} md={3} className="g-4 bookCard">
           {
             // eslint-disable-next-line
             userBooks.map((book) => {
               if (book.libraryCategory === "Wishlist") {
                 return (
                   <Col key={book._id}>
+                    <h1 align="center">Wishlist</h1>
                     <Card border="dark">
                       {book.cover ? (
                         <Card.Img
@@ -64,15 +63,13 @@ const UserProfile = () => {
               }
             })
           }
-        </Row>
-        <h1 align="center">Favorites</h1>
-        <Row xs={1} md={3} className="g-4 bookCard">
           {
             // eslint-disable-next-line
             userBooks.map((book) => {
               if (book.libraryCategory === "Favorites") {
                 return (
                   <Col key={book._id}>
+                    <h1 align="center">Favorites</h1>
                     <Card border="dark">
                       {book.cover ? (
                         <Card.Img
@@ -97,15 +94,13 @@ const UserProfile = () => {
               }
             })
           }
-        </Row>
-        <h1 align="center">Bookshelf</h1>
-        <Row xs={1} md={3} className="g-4 bookCard">
           {
             // eslint-disable-next-line
             userBooks.map((book) => {
               if (book.libraryCategory === "Bookshelf") {
                 return (
                   <Col key={book._id}>
+                    <h1 align="center">Bookshelf</h1>
                     <Card border="dark">
                       {book.cover ? (
                         <Card.Img

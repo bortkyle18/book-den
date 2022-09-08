@@ -89,7 +89,7 @@ const Home = (props) => {
           ? `Viewing ${allBooks.length} results:`
           : 'No book posts have been made yet'}
       </h2> */}
-        <Row xs={1} md={3} className="g-4 bookCard">
+        <Row xs={2} md={3} className="g-4 bookCard">
           {// eslint-disable-next-line
             allBooks.map((book) => {
                 if (book.review.length > 0) {
