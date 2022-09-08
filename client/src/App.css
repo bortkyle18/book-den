@@ -1,6 +1,5 @@
-body {
-  background-image:url(./assets/images/background1.jpg);
-  background-size: cover;
+.body {
+  background-color: #A67B50;
 }
 
 .home {
