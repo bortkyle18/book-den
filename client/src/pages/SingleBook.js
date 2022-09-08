@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import CommentForm from "../components/CommentForm";
 import CommentList from "../components/CommentList";
-import { Card, Col } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 import auth from "../utils/auth";
 
 const SingleBook = (props) => {
@@ -41,40 +41,35 @@ const SingleBook = (props) => {
 
   if (bookData && authUser) {
     return (
-      <Col key={bookData._id}>
+      <Col>
+      <br />
+        <Row key={bookData._id} xs={2} md={2} className="g-4">
+          <Card border="dark" className="singleBook">
+            {bookData.cover ? (
+              <Card.Img
+                src={bookData.cover}
+                alt={`The cover for ${bookData.title}`}
+                variant="top"
+              />
+            ) : null}
+          </Card>
+          <Card className="singleBook">
+            <Card.Body>
+              <h1>{bookData.title}</h1>
+              <h5>Authors: {bookData.authors}</h5>
+              <p>
+                <>Posted By: </>
+                <Link to={`/profile/${bookData.username}`}>
+                  {bookData.username}
+                </Link>{" "}
+                on {bookData.createdAt}
+              </p>
+              <Card.Text>{bookData.review}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Row>
         <br />
-        <Card border="dark">
-          {bookData.cover ? (
-            <Card.Img
-              src={bookData.cover}
-              alt={`The cover for ${bookData.title}`}
-              variant="top"
-            />
-          ) : null}
-          <Card.Body>
-            <Link to={`/book/${bookData.username}/${bookData._id}`}>
-              <Card.Title>{bookData.title}</Card.Title>
-            </Link>
-            <p className="small">Authors: {bookData.authors}</p>
-            <p>
-              <>Posted By: </>
-              <Link to={`/profile/${bookData.username}`}>
-                {bookData.username}
-              </Link>{" "}
-              on {bookData.createdAt}
-            </p>
-            <Card.Text>{bookData.review}</Card.Text>
-            <br />
-            <br />
-            <Card.Text>
-              To read or leave comments on this review, click the title of the
-              book above.
-            </Card.Text>
-          </Card.Body>
-          <br />
-          <br />
-          <br />
-          <br />
+        <Card>
           <div className="mb-3">
             {bookData.commentCount > 0 && (
               <CommentList
@@ -87,6 +82,8 @@ const SingleBook = (props) => {
             )}
           </div>
         </Card>
+        <br/>
+        <br/>
       </Col>
     );
   }

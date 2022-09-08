@@ -70,7 +70,7 @@ const CommentForm = ({ bookId, username }) => {
           onChange={handleChange}
         ></textarea>
 
-        <button className="btn col-12 col-md-5" type="submit">
+        <button className="btn btn-success" type="submit">
           Submit
         </button>
         {saveMessage.msg.length > 0 && (

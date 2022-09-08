@@ -342,6 +342,8 @@ const Bookshelf = (props) => {
             })
           }
         </Row>
+        <br/>
+        <br/>
       </div>
     );
   }

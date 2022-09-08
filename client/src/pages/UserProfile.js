@@ -281,7 +281,7 @@ const UserProfile = (props) => {
                         />
                       ) : null}
                       <Card.Body>
-                        <Link to={`/MyBook/${book._id}}/${book._id}`}>
+                        <Link to={`/MyBook/${book._id}`}>
                           <Card.Title>{book.title}</Card.Title>
                         </Link>
                         <p className="small">Authors: {book.authors}</p>
@@ -340,7 +340,7 @@ const UserProfile = (props) => {
                         />
                       ) : null}
                       <Card.Body>
-                        <Link to={`/MyBook/${book._id}}/${book._id}`}>
+                        <Link to={`/MyBook/${book._id}`}>
                           <Card.Title>{book.title}</Card.Title>
                         </Link>
                         <p className="small">Authors: {book.authors}</p>
@@ -399,7 +399,7 @@ const UserProfile = (props) => {
                         />
                       ) : null}
                       <Card.Body>
-                        <Link to={`/MyBook/${book._id}}/${book._id}`}>
+                        <Link to={`/MyBook/${book._id}`}>
                           <Card.Title>{book.title}</Card.Title>
                         </Link>
                         <p className="small">Authors: {book.authors}</p>

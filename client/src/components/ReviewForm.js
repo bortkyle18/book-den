@@ -66,7 +66,7 @@ const ReviewForm = (props) => {
           className="form-input col-12 col-md-12"
           onChange={handleChange}
         ></textarea>
-        <button className="btn col-12 col-md-3" type="submit">
+        <button className="btn btn-success" type="submit">
           Submit
         </button>
         {saveMessage.msg.length > 0 && (
