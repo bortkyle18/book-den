@@ -1,5 +1,14 @@
 # book-den
 
+## Preview
+
+<p>
+  <img src="./client/src/assets/images/screenshot.png" width="350"
+
+</p>
+
+Check out the deployed application [here](https://glacial-ridge-11514.herokuapp.com/).
+
 ## Contents
 
 - [book-den](#book-den)
@@ -7,7 +16,6 @@
   - [User Story](#user-story)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Preview](#preview)
   - [Contributing](#contributing)
   - [Tests](#tests)
   - [License](#license)
@@ -34,16 +42,6 @@ Run the following commands:
 1. npm run develop
 
 2. go to http://localhost:3000/
-
-
-## Preview
-
-<p align="center">
-  <img src="./client/src/assets/images/screenshot.png" width="350"
-
-</p>
-
-Check out the deployed application [here](https://glacial-ridge-11514.herokuapp.com/).
 
 ## Contributing
 

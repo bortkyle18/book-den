@@ -69,19 +69,22 @@ const SingleBook = (props) => {
           </Card>
         </Row>
         <br />
-        <Card>
-          <div className="mb-3">
-            {bookData.commentCount > 0 && (
-              <CommentList
-                comments={bookData.comments}
-                username={authUser.username}
-              />
-            )}
-            {auth.loggedIn() && (
-              <CommentForm bookId={bookData._id} username={authUser.username} />
-            )}
-          </div>
-        </Card>
+        {auth.loggedIn() && (
+          <Card>
+            <div className="mb-3 text-center">
+              <br/>
+              {bookData.commentCount > 0 && (
+                <CommentList
+                  comments={bookData.comments}
+                  username={authUser.username}
+                />
+              )}
+              {auth.loggedIn() && (
+                <CommentForm bookId={bookData._id} username={authUser.username} />
+              )}
+            </div>
+          </Card>
+        )}
         <br/>
         <br/>
       </Col>
