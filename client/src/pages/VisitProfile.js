@@ -27,14 +27,10 @@ const UserProfile = () => {
     return (
       <div>
         <br />
-        <p>
+        <h1>
           <span style={{ fontWeight: "bold" }}>Username:</span>{" "}
           {userData.username}
-        </p>
-        <p>
-          <span style={{ fontWeight: "bold" }}>User email:</span>
-          {userData.email}
-        </p>
+        </h1>
         <br />
         <h1 align="center">Wishlist</h1>
         <Row xs={1} md={3} className="g-4 bookCard">
