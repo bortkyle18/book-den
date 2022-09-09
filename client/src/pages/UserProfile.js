@@ -187,7 +187,7 @@ const UserProfile = (props) => {
         <br />
 
         <h4>
-          Add <span className="text-success"> Book</span> To Wishlist
+          Add <span className="text-success"> Book</span> To Library
         </h4>
         <Form onSubmit={handleFormSubmit}>
           <Col xs={12} md={5}>
